@@ -19,4 +19,4 @@ Get it right now to edit your windows and make it complity your own
 
 Launch Command:
 
-`irm github.com/SteavenToolBox/Windows/raw/main/SteavenToolBox.ps1 | iex`
+`irm github.com/SteavenToolBox/Windows/raw/main/Run.ps1 | iex`
