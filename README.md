@@ -1,5 +1,5 @@
 # SteavenToolBox
-A Free Open Source Toolbox For Windows 11 and Windows 10!
+A Free Open Source Toolbox For Windows 11 and Windows 10 and Windows 7!
 
 
 > **Readme**
