@@ -26,11 +26,11 @@ echo =======================================================================
 echo "SteavenToolbox | We care about your pc!" "Windows 10 and Windows 11!"
 echo =======================================================================
 echo ---------------------------------------------------------------------------------------------------------------------                                    
-echo 1. Optmize windows (not finshed but it dose some)
+echo 1. Optmize windows
 echo 2. Update All Installed Apps To Thair Lastest Versions
 echo 3. Install Features, Programs and Apps
 echo 4. Windows Update Fix 
-echo 5. Crack Windows and Office
+echo 5. Crack Windows and Office (Use it at your own Risk)
 echo 6. Uninstall Apps
 echo 7. Repair Windows
 echo 0. Go Back
@@ -260,7 +260,7 @@ if '%choice%'=='1' goto browsers
 if '%choice%'=='2' winget install -e --id 7zip.7zip
 if '%choice%'=='3' winget install -e --id RARLab.WinRAR
 if '%choice%'=='4' winget install -e --id VideoLAN.VLC
-if '%choice%'=='5' choco install vcredist2005 vcredist2008 vcredist2010  vcredist2012 msvisualcplusplus2012-redist vcredist2013 vcredist2017 vcredist140 vcredist-all adoptopenjdk8openj9jre adoptopenjdk11openj9jre directx -y & DISM /Online /Enable-Feature /FeatureName:NetFx3 & DISM /Online /Enable-Feature /FeatureName:NetFx4 /All & dism /Online /enable-feature /FeatureName:"LegacyComponents" /All & dism /Online /enable-feature /FeatureName:"DirectPlay" /All
+if '%choice%'=='5' choco install vcredist2005 vcredist2008 vcredist2010  vcredist2012 msvisualcplusplus2012-redist vcredist2013 vcredist2017 vcredist140 vcredist-all adoptopenjdk8openj9jre adoptopenjdk11openj9jre directx netfx-4.8.1 -y & DISM /Online /Enable-Feature /FeatureName:NetFx3 & dism /Online /enable-feature /FeatureName:"LegacyComponents" /All & dism /Online /enable-feature /FeatureName:"DirectPlay" /All
 if '%choice%'=='6' wsl --install
 if '%choice%'=='7' winget install --id=AngusJohnson.ResourceHacker  -e
 if '%choice%'=='8' choco install processhacker -y
