@@ -1,10 +1,3 @@
-Add-Type -AssemblyName System.Windows.Forms
-[System.Windows.Forms.Application]::EnableVisualStyles()
-
-$ErrorActionPreference = 'SilentlyContinue'
-$wshell = New-Object -ComObject Wscript.Shell
-$Button = [System.Windows.MessageBoxButton]::YesNoCancel
-$ErrorIco = [System.Windows.MessageBoxImage]::Error
 Set-ExecutionPolicy RemoteSigned -scope CurrentUser
 scoop install git | Out-Null
 scoop bucket add extras | Out-Null
