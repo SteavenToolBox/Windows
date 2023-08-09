@@ -82,7 +82,6 @@ echo Desktop Vs Laptop vs 3
 echo Laptop have Power Thrttling enabled while Desktop have it disabled 
 echo Laptop Have automatic Maps updates enabled
 echo Laptop Have Maps while Desktop have it Uninstalled 
-echo Laptop Have NumLock disabled after Startup while Desktop have it disabled 
 echo 3 Bascily dont have any of this
 echo Optmize Windows
 echo 1. Desktop
@@ -104,7 +103,7 @@ echo.
 goto optmizewindows
 :optmizedesktop
 cls
-echo  Disabling Power Thrttling
+echo Disabling Power Thrttling
 reg add "HKLM\SYSTEM\CurrentControlSet\Control\Power\PowerThrottling" /v "PowerThrottlingOff" /t REG_DWORD /d "0" /f> nul
 echo Disabling automatic Maps updates...
 reg add "HKLM\SYSTEM\Maps" /v "AutoUpdateEnabled" /t REG_DWORD /d "0" /f> nul
@@ -112,13 +111,12 @@ echo Uninstalling Maps app
 powershell -command "Get-AppxPackage *WindowsMaps* | Remove-AppxPackage"> nul
 :optmizelaptop
 cls
-echo Enabling automatic Maps updates...
-reg add "HKLM\SYSTEM\Maps" /v "AutoUpdateEnabled" /t REG_DWORD /d "1" /f> nul
+echo Enabling Power Thrttling
+reg add "HKLM\SYSTEM\CurrentControlSet\Control\Power\PowerThrottling" /v "PowerThrottlingOff" /t REG_DWORD /d "1" /f> nul
 echo Installing Maps app
 winget install --id 9WZDNCRDTBVB> nul
-reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer" /v "EnableAutoTray" /t REG_DWORD /d "1" /f> nul
-echo  Enabling Power Thrttling
-reg add "HKLM\SYSTEM\CurrentControlSet\Control\Power\PowerThrottling" /v "PowerThrottlingOff" /t REG_DWORD /d "1" /f> nul
+echo Enabling automatic Maps updates...
+reg add "HKLM\SYSTEM\Maps" /v "AutoUpdateEnabled" /t REG_DWORD /d "1" /f> nul
 :optmize
 echo Hiding Teams Icon From Taskbar
 reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /v "TaskbarMn" /t REG_DWORD /d "0" /f> nul
