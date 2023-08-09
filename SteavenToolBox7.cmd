@@ -21,8 +21,8 @@ if '%choice%'=='2' goto temp
 if '%choice%'=='3' goto apps
 if '%choice%'=='4' goto deblot
 if '%choice%'=='0' start https://www.microsoft.com/en-us/download/details.aspx?id=54616
-ECHO "%choice%" is not valid, try again
-ECHO.
+echo "%choice%" is not valid, try again
+echo.
 goto start
 :features
 cls
@@ -38,7 +38,7 @@ if not '%choice%'=='' set choice=%choice:~0,100%
 if '%choice%'=='0' goto start
 if '%choice%'=='1' dism /online /NoRestart /Disable-Feature /FeatureName:Internet-Explorer-Optional-amd64
 if '%choice%'=='2' dism /online /NoRestart /Enable-Feature /FeatureName:Internet-Explorer-Optional-amd64
-ECHO "%choice%" is not valid, try again
+echo "%choice%" is not valid, try again
 goto start
 :temp 
 cls
@@ -88,7 +88,7 @@ if '%choice%'=='6' powershell -command "choco install discord -y"
 if '%choice%'=='7' powershell -command "choco install notepadplusplus.install -y"
 if '%choice%'=='8' powershell -command "choco install vscode -y"
 if '%choice%'=='9' powershell -command "choco install paint.net -y"
-ECHO "%choice%" is not valid, try again
+echo "%choice%" is not valid, try again
 goto start
 :deblot
 cls
@@ -116,17 +116,17 @@ echo Stopping and disabling Superfetch service...
 sc stop SysMain
 sc config "SysMain" start= disabled
 echo Showing file operations details...
-Reg.exe add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\OperationStatusManager" /v "EnthusiastMode" /t REG_DWORD /d "1" /f
+reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\OperationStatusManager" /v "EnthusiastMode" /t REG_DWORD /d "1" /f
 echo Making System Responsiveness Better using regedit
-Reg.exe add "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Multimedia\SystemProfile" /v "NetworkThrottlingIndex" /t REG_DWORD /d "10" /f
-Reg.exe add "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Multimedia\SystemProfile" /v "SystemResponsiveness" /t REG_DWORD /d "20" /f
-Reg.exe add "HKLM\SYSTEM\CurrentControlSet\Control" /v "WaitToKillServiceTimeout" /t REG_DWORD /d "2000" /f
-Reg.exe add "HKCU\Control Panel\Desktop" /v "AutoEndTasks" /t REG_SZ /d "1" /f
-Reg.exe add "HKCU\Control Panel\Desktop" /v "HungAppTimeout" /t REG_SZ /d "1000" /f
-Reg.exe add "HKCU\Control Panel\Desktop" /v "MenuShowDelay" /t REG_SZ /d "8" /f
-Reg.exe add "HKCU\Control Panel\Desktop" /v "WaitToKillAppTimeout" /t REG_SZ /d "2000" /f
-Reg.exe add "HKCU\Control Panel\Desktop" /v "LowLevelHooksTimeout" /t REG_SZ /d "1000" /f
-Reg.exe add "HKCU\Control Panel\Mouse" /v "MouseHoverTime" /t REG_SZ /d "8" /f
-Reg.exe add "HKLM\SYSTEM\CurrentControlSet\Control" /v "WaitToKillServiceTimeout" /t REG_SZ /d "2000" /f
+reg add "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Multimedia\SystemProfile" /v "NetworkThrottlingIndex" /t REG_DWORD /d "10" /f
+reg add "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Multimedia\SystemProfile" /v "SystemResponsiveness" /t REG_DWORD /d "20" /f
+reg add "HKLM\SYSTEM\CurrentControlSet\Control" /v "WaitToKillServiceTimeout" /t REG_DWORD /d "2000" /f
+reg add "HKCU\Control Panel\Desktop" /v "AutoEndTasks" /t REG_SZ /d "1" /f
+reg add "HKCU\Control Panel\Desktop" /v "HungAppTimeout" /t REG_SZ /d "1000" /f
+reg add "HKCU\Control Panel\Desktop" /v "MenuShowDelay" /t REG_SZ /d "8" /f
+reg add "HKCU\Control Panel\Desktop" /v "WaitToKillAppTimeout" /t REG_SZ /d "2000" /f
+reg add "HKCU\Control Panel\Desktop" /v "LowLevelHooksTimeout" /t REG_SZ /d "1000" /f
+reg add "HKCU\Control Panel\Mouse" /v "MouseHoverTime" /t REG_SZ /d "8" /f
+reg add "HKLM\SYSTEM\CurrentControlSet\Control" /v "WaitToKillServiceTimeout" /t REG_SZ /d "2000" /f
 pause
 goto start
