@@ -1,6 +1,8 @@
 echo off
 cls
-Echo Shell Fixing
+echo Restoring your personal files to their default original location
+xcopy /e "%UserProfile%\OneDrive" "%UserProfile%"> nul
+echo Shell Fixing
 Reg.exe add "HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\User Shell Folders" /v "AppData" /t REG_EXPAND_SZ /d "%%USERPROFILE%%\AppData\Roaming" /f> nul
 Reg.exe add "HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\User Shell Folders" /v "Cache" /t REG_EXPAND_SZ /d "%%USERPROFILE%%\AppData\Local\Microsoft\Windows\INetCache" /f> nul
 Reg.exe add "HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\User Shell Folders" /v "Cookies" /t REG_EXPAND_SZ /d "%%USERPROFILE%%\AppData\Local\Microsoft\Windows\INetCookies" /f> nul
@@ -27,7 +29,7 @@ taskkill /f /im OneDrive.exe> nul
 %SystemRoot%\System32\OneDriveSetup.exe /uninstall> nul
 %SystemRoot%\SysWOW64\OneDriveSetup.exe /uninstall> nul
    echo Removing remaining OneDrive folders.
-   xcopy /e "%UserProfile%\OneDrive" "%UserProfile%"> nul   
+   xcopy /e "%UserProfile%\OneDrive" "%UserProfile%"> nul
    rd "%UserProfile%\OneDrive" /s /q> nul
    rd "%LocalAppData%\Microsoft\OneDrive" /s /q> nul
    rd "%ProgramData%\Microsoft OneDrive" /s /q> nul
