@@ -114,7 +114,7 @@ cls
 echo Enabling Power Thrttling
 reg add "HKLM\SYSTEM\CurrentControlSet\Control\Power\PowerThrottling" /v "PowerThrottlingOff" /t REG_DWORD /d "1" /f> nul
 echo Installing Maps app
-winget install --id 9WZDNCRDTBVB> nul
+winget install --id 9WZDNCRDTBVB
 echo Enabling automatic Maps updates...
 reg add "HKLM\SYSTEM\Maps" /v "AutoUpdateEnabled" /t REG_DWORD /d "1" /f> nul
 :optmize
