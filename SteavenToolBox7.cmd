@@ -112,9 +112,6 @@ sc stop HomeGroupListener
 sc config "HomeGroupListener" start= disabled
 sc stop HomeGroupProvider
 sc config "HomeGroupProvider" start= disabled
-echo Stopping and disabling Superfetch service...
-sc stop SysMain
-sc config "SysMain" start= disabled
 echo Showing file operations details...
 reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\OperationStatusManager" /v "EnthusiastMode" /t REG_DWORD /d "1" /f
 echo Making System Responsiveness Better using regedit
