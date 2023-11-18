@@ -3,7 +3,9 @@ If (!([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]:
 	Exit
 }
 
-# GUI Specs
+
+function Install-Winget {
+    # GUI Specs
 Write-Host "Checking winget..."
 
 # Check if winget is installed
@@ -20,16 +22,26 @@ else{
 	Write-Host Winget Installed
     $ResultText.text = "`r`n" +"`r`n" + "Winget Installed"
 }
+}
 
-Set-ExecutionPolicy RemoteSigned -scope CurrentUser
-Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; Invoke-Expression ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1')) | Out-Null
-choco install chocolateygui -y  | Out-Null
-Write-Output "Chocolatey is now installed"
+function Install-Chocolatey {
+	Set-ExecutionPolicy RemoteSigned -scope CurrentUser
+	Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; Invoke-Expression ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1')) | Out-Null
+	choco install chocolateygui -y  | Out-Null
+	Write-Output "Chocolatey is now installed"
+}
 
-Invoke-RestMethod get.scoop.sh -outfile 'install.ps1'  | Out-Null
-Invoke-Expression "& {$(Invoke-RestMethod get.scoop.sh)} -RunAsAdmin"  | Out-Null
-scoop install git | Out-Null
-scoop bucket add extras | Out-Null
-Write-Output "Scoop is now installed"
-scoop install sudo aria2 wget git grep | Out-Null
-Write-Output "Sudo and Aria2 and Wget and Git is now installed"
+function Install-Scoop {
+	Invoke-RestMethod get.scoop.sh -outfile 'install.ps1'  | Out-Null
+	Invoke-Expression "& {$(Invoke-RestMethod get.scoop.sh)} -RunAsAdmin"  | Out-Null
+	scoop install git | Out-Null
+	scoop bucket add extras | Out-Null
+	Write-Output "Scoop is now installed"
+	scoop install sudo aria2 wget git grep | Out-Null
+	Write-Output "Sudo and Aria2 and Wget and Git is now installed"
+}
+
+# Call the functions where needed
+Install-Winget
+Install-Chocolatey
+Install-Scoop
