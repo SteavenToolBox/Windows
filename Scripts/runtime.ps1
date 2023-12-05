@@ -66,6 +66,12 @@ function Install-Scoop {
 
 
 function Install-WindowsUpdateCli {
+    # Store the current ConfirmPreference
+    $currentConfirmPreference = $ConfirmPreference
+
+    # Set the ConfirmPreference to "Yes" only for this function
+    $ConfirmPreference = 'Yes'
+
     # Check if PSWindowsUpdate module is installed
     if (-not (Get-Module -Name PSWindowsUpdate -ListAvailable)) {
         Install-Module -Name PSWindowsUpdate -Force -Confirm:$false
@@ -76,6 +82,9 @@ function Install-WindowsUpdateCli {
     if (-not ($wuService.MicrosoftUpdate -eq $true)) {
         Add-WUServiceManager -MicrosoftUpdate -Confirm:$false
     }
+
+    # Restore the original ConfirmPreference
+    $ConfirmPreference = $currentConfirmPreference
 }
 
 
