@@ -48,8 +48,24 @@ rd /s /q "C:\OneDriveTemp" > nul
 del /s /f /q "%USERPROFILE%\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\OneDrive.lnk" > nul
 
 echo Removing OneDrive registry keys.
-reg Delete "HKEY_CLASSES_ROOT\CLSID\{018D5C66-4533-4307-9B53-224DE2ED1FE6}" /f > nul
-reg Delete "HKEY_CLASSES_ROOT\Wow6432Node\CLSID\{018D5C66-4533-4307-9B53-224DE2ED1FE6}" /f > nul
-reg ADD "HKEY_CLASSES_ROOT\CLSID\{018D5C66-4533-4307-9B53-224DE2ED1FE6}" /v System.IsPinnedToNameSpaceTree /d "0" /t REG_DWORD /f > nul
+reg delete "HKEY_CLASSES_ROOT\CLSID\{018D5C66-4533-4307-9B53-224DE2ED1FE6}" /f > nul
+reg delete "HKEY_CLASSES_ROOT\Wow6432Node\CLSID\{018D5C66-4533-4307-9B53-224DE2ED1FE6}" /f > nul
+reg add "HKEY_CLASSES_ROOT\CLSID\{018D5C66-4533-4307-9B53-224DE2ED1FE6}" /v System.IsPinnedToNameSpaceTree /d "0" /t REG_DWORD /f > nul
+reg delete "HKEY_USERS\DEFAULT\Software\Microsoft\Windows\CurrentVersion\Run" /v "OneDriveSetup" /f > nul
+
+echo Deleting OneDrive Setup Files
+echo Deleting OneDriveSetup.exe from SysWOW64...
+takeown /f "%SystemRoot%\SysWOW64\OneDriveSetup.exe" > nul
+icacls "%SystemRoot%\SysWOW64\OneDriveSetup.exe" /grant administrators:F > nul
+del "%SystemRoot%\SysWOW64\OneDriveSetup.exe" /f > nul
+
+echo Deleting OneDriveSetup.exe from System32...
+takeown /f "%SystemRoot%\System32\OneDriveSetup.exe" > nul
+icacls "%SystemRoot%\System32\OneDriveSetup.exe" /grant administrators:F > nul
+del "%SystemRoot%\System32\OneDriveSetup.exe" /f > nul
+
+echo Deleting it as a package
+wget https://github.com/SteavenToolBox/Windows/raw/main/Scripts/install_wim_tweak.exe -O c:\install_wim_tweak.exe --no-check-certificate > nul
+c:\install_wim_tweak.exe /o /c Microsoft-Windows-OneDrive > nul
 
 pause
