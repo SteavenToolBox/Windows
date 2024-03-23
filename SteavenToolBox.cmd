@@ -118,6 +118,18 @@ winget install --id 9WZDNCRDTBVB
 echo Enabling automatic Maps updates...
 reg add "HKLM\SYSTEM\Maps" /v "AutoUpdateEnabled" /t REG_DWORD /d "1" /f> nul
 :optmize
+echo Disabling Web Search and Cortana
+reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\Windows Search" /v "AllowCortana" /t REG_DWORD /d "0" /f> nul
+reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\Windows Search" /v "AllowCloudSearch" /t REG_DWORD /d "0" /f> nul
+reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\Windows Search" /v "AllowCortanaAboveLock" /t REG_DWORD /d "0" /f> nul
+reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\Windows Search" /v "ConnectedSearchUseWeb" /t REG_DWORD /d "0" /f> nul
+reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\Windows Search" /v "AllowSearchToUseLocation" /t REG_DWORD /d "0" /f> nul
+reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\Windows Search" /v "DisableWebSearch" /t REG_DWORD /d "1" /f> nul
+reg add "HKCU\Software\Policies\Microsoft\Windows\Explorer" /v "DisableSearchBoxSuggestions" /t REG_DWORD /d "1" /f> nul
+reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\Windows Search" /v "BingSearchEnabled" /t REG_DWORD /d "0" /f> nul
+reg add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Search" /v BingSearchEnabled /t REG_DWORD /d 0 /f> nul
+echo Hiding Cortana From Taskbar
+reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /v "ShowCortanaButton" /t REG_DWORD /d "0" /f> nul
 echo Hiding Teams Icon From Taskbar
 reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /v "TaskbarMn" /t REG_DWORD /d "0" /f> nul
 echo Disabling Telemetry...
@@ -212,34 +224,203 @@ reg add "HKCU\Control Panel\Desktop" /v "WaitToKillAppTimeout" /t REG_SZ /d "200
 reg add "HKCU\Control Panel\Desktop" /v "LowLevelHooksTimeout" /t REG_SZ /d "1000" /f> nul
 reg add "HKCU\Control Panel\Mouse" /v "MouseHoverTime" /t REG_SZ /d "8" /f> nul
 reg add "HKLM\SYSTEM\CurrentControlSet\Control" /v "WaitToKillServiceTimeout" /t REG_SZ /d "2000" /f> nul
+echo Winaero Tweaker regedit 
+reg add HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced /v ShowSyncProviderNotifications /t REG_DWORD /d 0 /f> nul
+reg add HKCU\Software\Microsoft\Windows\CurrentVersion\ContentDeliveryManager /v RotatingLockScreenEnabled /t REG_DWORD /d 0 /f> nul
+reg add HKCU\Software\Microsoft\Windows\CurrentVersion\ContentDeliveryManager /v RotatingLockScreenOverlayEnabled /t REG_DWORD /d 0 /f> nul
+reg add HKCU\Software\Microsoft\Windows\CurrentVersion\ContentDeliveryManager /v "SubscribedContent-338387Enabled" /t REG_DWORD /d 0 /f> nul
+reg add HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager /v SoftLandingEnabled /t REG_DWORD /d 0 /f> nul
+reg add HKCU\Software\Microsoft\Windows\CurrentVersion\UserProfileEngagement /v ScoobeSystemSettingEnabled /t REG_DWORD /d 0 /f> nul
+reg add HKCU\Software\Microsoft\Windows\CurrentVersion\ContentDeliveryManager /v "SubscribedContent-338393Enabled" /t REG_DWORD /d 0 /f> nul
+reg add HKCU\Software\Microsoft\Windows\CurrentVersion\ContentDeliveryManager /v SilentInstalledAppsEnabled /t REG_DWORD /d 0 /f> nul
+reg add HKCU\Software\Microsoft\Windows\CurrentVersion\AdvertisingInfo /v Enabled /t REG_DWORD /d 0 /f> nul
+reg add HKCU\Software\Microsoft\Windows\CurrentVersion\Privacy /v TailoredExperiencesWithDiagnosticDataEnabled /t REG_DWORD /d 0 /f> nul
+reg add HKCU\Software\Microsoft\Windows\CurrentVersion\ContentDeliveryManager /v "SubscribedContent-310093Enabled" /t REG_DWORD /d 0 /f> nul
+reg add HKCU\Software\Microsoft\Windows\CurrentVersion\ContentDeliveryManager /v "SubscribedContent-338389Enabled" /t REG_DWORD /d 0 /f> nul
+reg add HKCU\Software\Microsoft\Windows\CurrentVersion\ContentDeliveryManager /v "SubscribedContent-314563Enabled" /t REG_DWORD /d 0 /f> nul
+reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\Configuration Manager" /v EnablePeriodicBackup /t REG_DWORD /d 1 /f> nul
+reg add HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer /v link /t REG_BINARY /d 00000000 /f> nul
+reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Input\Settings" /v EnableExpressiveInputShellHotkey /t REG_DWORD /d 1 /f> nul
 pause
 goto optmizewindows
 :installapps
 cls
 color b
 echo ---------------------------------------------------------------------------------------------------------------------
-echo 1. Browsers
-echo 2. 7zip
-echo 3. Winrar
-echo 4. VLC
-echo 5. Full Runtime
-echo 6. Install Windows Subsystem for Linux
-echo 7. Resoure Hacker
-echo 8. Process Hacker
+echo 1. Full Runtime
+echo 2. Web Browsers
+echo 3. Zip Programs
+echo 4. Media Programs
+echo 5. Chat Programs
+echo 6. Games 
+echo 7. Install Windows Subsystem for Linux
+echo 8. Resoure Hacker
+echo 9. Process Hacker
+echo 10. Kde Connect
+echo 11. Nilesoft Shell
+echo 12. Windows Terminal
+echo 13. Starship
+echo 14. yt-dlp
+echo 15. WingetUi
+echo 16. Intel Support Assistant
+echo 17. Hp Smart
+echo 18. NextCloud Desktop
+echo 19. OBS Studio
+echo 20. Kdenlive
+echo 21. GIMP (Stable)
+echo 22. GIMP (Nightly)
+echo 23. Krita
+echo 24. Visual Studio 2022 Community
+echo 25. Visual Studio Code
+echo 26. Github Desktop
+echo 27. Ubuntu 22.04 Wsl
+echo 28. Martinrotter RSSGuard
 echo 0. Go back
 echo ---------------------------------------------------------------------------------------------------------------------
 set choice=
 set /p choice=Type the number.
 if not '%choice%'=='' set choice=%choice:~0,100%
-if '%choice%'=='1' goto browsers
+if '%choice%'=='1' choco install vcredist2005 vcredist2008 vcredist2010  vcredist2012 msvisualcplusplus2012-redist vcredist2013 vcredist2017 vcredist140 vcredist-all adoptopenjdk8openj9jre adoptopenjdk11openj9jre directx netfx-4.8.1 -y & DISM /Online /Enable-Feature /FeatureName:NetFx3 & dism /Online /enable-feature /FeatureName:"LegacyComponents" /All & dism /Online /enable-feature /FeatureName:"DirectPlay" /All
+if '%choice%'=='2' goto browsers
+if '%choice%'=='3' goto zipprogrames
+if '%choice%'=='4' goto mediaprogrames
+if '%choice%'=='5' goto chatprograms
+if '%choice%'=='6' goto gamesprograms
+if '%choice%'=='7' wsl --install
+if '%choice%'=='8' winget install --id=AngusJohnson.ResourceHacker  -e
+if '%choice%'=='9' choco install processhacker -y
+if '%choice%'=='10' winget install -e --id 9N93MRMSXBF0
+if '%choice%'=='11' winget install -e --id Nilesoft.Shell
+if '%choice%'=='12' winget install -e --id Microsoft.WindowsTerminal
+if '%choice%'=='13' winget install -e --id Starship.Starship
+if '%choice%'=='14' winget install -e --id yt-dlp.yt-dlp
+if '%choice%'=='15' winget install -e --id SomePythonThings.WingetUIStore
+if '%choice%'=='16' winget install -e --id Intel.IntelDriverAndSupportAssistant
+if '%choice%'=='17' winget install -e --id 9WZDNCRFHWLH
+if '%choice%'=='18' winget install -e --id Nextcloud.NextcloudDesktop
+if '%choice%'=='19' winget install -e --id OBSProject.OBSStudio
+if '%choice%'=='20' winget install -e --id KDE.Kdenlive
+if '%choice%'=='21' winget install -e --id GIMP.GIMP
+if '%choice%'=='22' winget install -e --id GIMP.GIMP.Nightly
+if '%choice%'=='23' winget install -e --id KDE.Krita
+if '%choice%'=='24' winget install -e --id Microsoft.VisualStudio.2022.Community
+if '%choice%'=='25' winget install -e --id Microsoft.VisualStudioCode
+if '%choice%'=='26' winget install -e --id GitHub.GitHubDesktop
+if '%choice%'=='27' winget install -e --id Canonical.Ubuntu.2204
+if '%choice%'=='28' winget install -e --id martinrotter.RSSGuard
+if '%choice%'=='0' goto start
+echo "%choice%" is not valid, try again
+echo.
+goto installapps
+:gamesprograms
+cls
+color b
+echo ---------------------------------------------------------------------------------------------------------------------
+echo 1. Steam
+echo 2. Epic Games Launcher
+echo 3. Heroic Games Launcher
+echo 4. Ubisoft Connect
+echo 5. EA App
+echo 6. Parsec
+echo 7. Moonlight
+echo 8. Sunshine
+echo 9. Minecraft Launcher
+echo 10. Prism Launcher
+echo 11. Labymod
+echo 12. DuckStation
+echo 13. PCSX2
+echo 14. RPCS3
+echo 15. Dolphin
+echo 16. Cemu
+echo 17. Ryujinx
+echo 18. Retroarch
+echo 19. EmulationStation
+echo 0. Go back
+echo ---------------------------------------------------------------------------------------------------------------------
+set choice=
+set /p choice=Type the number.
+if not '%choice%'=='' set choice=%choice:~0,100%
+if '%choice%'=='1' winget install -e --id Valve.Steam
+if '%choice%'=='2' winget install -e --id EpicGames.EpicGamesLauncher
+if '%choice%'=='3' winget install -e --id HeroicGamesLauncher.HeroicGamesLauncher
+if '%choice%'=='4' winget install -e --id Ubisoft.Connect
+if '%choice%'=='5' winget install -e --id ElectronicArts.EADesktop
+if '%choice%'=='6' winget install -e --id Parsec.Parsec
+if '%choice%'=='7' winget install -e --id MoonlightGameStreamingProject.Moonlight
+if '%choice%'=='8' winget install -e --id LizardByte.Sunshine
+if '%choice%'=='9' winget install -e --id Mojang.MinecraftLauncher
+if '%choice%'=='10' winget install -e --id PrismLauncher.PrismLauncher
+if '%choice%'=='11' winget install -e --id LabyMediaGmbH.LabyModLauncher
+if '%choice%'=='12' winget install -e --id stenzek.DuckStation
+if '%choice%'=='13' choco install pcsx2 -y
+if '%choice%'=='14' choco install rpcs3 --pre -y
+if '%choice%'=='15' choco install dolphin --pre -y
+if '%choice%'=='16' choco install cemu -y
+if '%choice%'=='17' choco install ryujinx -y
+if '%choice%'=='18' choco install retroarch -y
+if '%choice%'=='19' choco install emulationstation.install -y
+if '%choice%'=='0' goto installapps
+echo "%choice%" is not valid, try again
+echo.
+goto installapps
+:chatprograms
+cls
+color b
+echo ---------------------------------------------------------------------------------------------------------------------
+echo 1. Discord
+echo 2. Element
+echo 3. Telegram Desktop
+echo 4. Whatsapp
+echo 0. Go back
+echo ---------------------------------------------------------------------------------------------------------------------
+set choice=
+set /p choice=Type the number.
+if not '%choice%'=='' set choice=%choice:~0,100%
+if '%choice%'=='1' winget install -e --id Discord.Discord
+if '%choice%'=='2' winget install -e --id Element.Element
+if '%choice%'=='3' winget install -e --id Telegram.TelegramDesktop
+if '%choice%'=='4' winget install -e --id 9NKSQGP7F2NH
+if '%choice%'=='0' goto installapps
+echo "%choice%" is not valid, try again
+echo.
+goto installapps
+:mediaprogrames
+cls
+color b
+echo ---------------------------------------------------------------------------------------------------------------------
+echo 1. VLC
+echo 2. Mpv
+echo 3. Audacious Music Player
+echo 4. K-Lite Codec Pack Mega
+echo 0. Go back
+echo ---------------------------------------------------------------------------------------------------------------------
+set choice=
+set /p choice=Type the number.
+if not '%choice%'=='' set choice=%choice:~0,100%
+if '%choice%'=='1' winget install -e --id VideoLAN.VLC
+if '%choice%'=='2' choco install mpv.install -y
+if '%choice%'=='3' winget install -e --id Audacious.MediaPlayer
+if '%choice%'=='4' winget install -e --id CodecGuide.K-LiteCodecPack.Mega
+if '%choice%'=='0' goto installapps
+echo "%choice%" is not valid, try again
+echo.
+goto installapps
+:zipprogrames
+cls
+color b
+echo ---------------------------------------------------------------------------------------------------------------------
+echo 1. NanaZip
+echo 2. 7zip
+echo 3. Winrar
+echo 0. Go back
+echo ---------------------------------------------------------------------------------------------------------------------
+set choice=
+set /p choice=Type the number.
+if not '%choice%'=='' set choice=%choice:~0,100%
+if '%choice%'=='1' winget install -e --id M2Team.NanaZip
 if '%choice%'=='2' winget install -e --id 7zip.7zip
 if '%choice%'=='3' winget install -e --id RARLab.WinRAR
-if '%choice%'=='4' winget install -e --id VideoLAN.VLC
-if '%choice%'=='5' choco install vcredist2005 vcredist2008 vcredist2010  vcredist2012 msvisualcplusplus2012-redist vcredist2013 vcredist2017 vcredist140 vcredist-all adoptopenjdk8openj9jre adoptopenjdk11openj9jre directx netfx-4.8.1 -y & DISM /Online /Enable-Feature /FeatureName:NetFx3 & dism /Online /enable-feature /FeatureName:"LegacyComponents" /All & dism /Online /enable-feature /FeatureName:"DirectPlay" /All
-if '%choice%'=='6' wsl --install
-if '%choice%'=='7' winget install --id=AngusJohnson.ResourceHacker  -e
-if '%choice%'=='8' choco install processhacker -y
-if '%choice%'=='0' goto start
+if '%choice%'=='0' goto installapps
 echo "%choice%" is not valid, try again
 echo.
 goto installapps
@@ -252,6 +433,7 @@ echo 2. Chrome
 echo 3. Brave
 echo 4. Chromium
 echo 5. Edge (If you removed it before it may faill to reinstall)
+echo 6. Thorium
 echo 0. Go back
 echo ---------------------------------------------------------------------------------------------------------------------
 set choice=
@@ -262,6 +444,7 @@ if '%choice%'=='2' winget install -e --id Google.Chrome
 if '%choice%'=='3' winget install -e --id BraveSoftware.BraveBrowser
 if '%choice%'=='4' winget install -e --id eloston.ungoogled-chromium
 if '%choice%'=='5' winget install -e --id Microsoft.Edge
+if '%choice%'=='6' winget install -e --id EDRLab.Thorium
 if '%choice%'=='0' goto installapps
 echo "%choice%" is not valid, try again
 echo.
