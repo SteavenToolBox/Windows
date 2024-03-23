@@ -93,8 +93,8 @@ echo ---------------------------------------------------------------------------
 set choice=
 set /p choice=Type the number.
 if not '%choice%'=='' set choice=%choice:~0,100%
-if '%choice%'=='1' goto optmizedesktop && goto optmize
-if '%choice%'=='2' goto optmizelaptop && goto optmize
+if '%choice%'=='1' goto optmizedesktop
+if '%choice%'=='2' goto optmizelaptop
 if '%choice%'=='3' cls && goto optmize && goto optmizewindows
 if '%choice%'=='4' powershell -command "irm christitus.com/win | iex"
 if '%choice%'=='0' goto start
@@ -109,6 +109,7 @@ echo Disabling automatic Maps updates...
 reg add "HKLM\SYSTEM\Maps" /v "AutoUpdateEnabled" /t REG_DWORD /d "0" /f> nul
 echo Uninstalling Maps app
 powershell -command "Get-AppxPackage *WindowsMaps* | Remove-AppxPackage"> nul
+goto optmize
 :optmizelaptop
 cls
 echo Enabling Power Thrttling
@@ -117,6 +118,7 @@ echo Installing Maps app
 winget install --id 9WZDNCRDTBVB
 echo Enabling automatic Maps updates...
 reg add "HKLM\SYSTEM\Maps" /v "AutoUpdateEnabled" /t REG_DWORD /d "1" /f> nul
+goto optmize
 :optmize
 echo Disabling Web Search and Cortana
 reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\Windows Search" /v "AllowCortana" /t REG_DWORD /d "0" /f> nul
