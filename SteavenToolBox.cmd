@@ -87,7 +87,8 @@ echo Optmize Windows
 echo 1. Desktop
 echo 2. Laptop
 echo 3. Without Laptop OR Desktop spifice Tweaks
-echo 4. Chris Titus Tech Optmize Windows (Recommaded)
+echo 4. Uninstall appx Blot
+echo 5. Chris Titus Tech Optmize Windows (Recommaded)
 echo 0. Go back
 echo ---------------------------------------------------------------------------------------------------------------------
 set choice=
@@ -96,10 +97,93 @@ if not '%choice%'=='' set choice=%choice:~0,100%
 if '%choice%'=='1' goto optmizedesktop
 if '%choice%'=='2' goto optmizelaptop
 if '%choice%'=='3' cls && goto optmize && goto optmizewindows
-if '%choice%'=='4' powershell -command "irm christitus.com/win | iex"
+if '%choice%'=='4' goto appxdebloat
+if '%choice%'=='5' powershell -command "irm christitus.com/win | iex"
 if '%choice%'=='0' goto start
 echo "%choice%" is not valid, try again
 echo.
+goto optmizewindows
+:appxdebloat
+cls
+echo Uninstalling Pepole
+powershell -command "Get-AppxPackage Microsoft.People* | Remove-AppxPackage"
+echo Uninstalling Big News
+powershell -command "Get-AppxPackage *bingweather* | Remove-AppxPackage"
+echo Uninstalling Big Sports
+powershell -command "Get-AppxPackage *bingsports* | Remove-AppxPackage"
+echo Uninstalling Movies and TV
+powershell -command "Get-AppxPackage *zunevideo* | Remove-AppxPackage"
+echo Uninstalling OneNote
+powershell -command "Get-AppxPackage *onenote* | Remove-AppxPackage"
+echo Uninstalling windowscommunicationsapps
+powershell -command "Get-AppxPackage *windowscommunicationsapps* | Remove-AppxPackage"
+echo Uninstalling Cortana
+powershell -command "Get-AppxPackage Microsoft.549981C3F5F10 | Remove-AppxPackage"
+echo Uninstalling Big Weather
+powershell -command "Get-AppxPackage Microsoft.BingWeather* | Remove-AppxPackage"
+echo Uninstalling Bing Sports
+powershell -command "Get-AppxPackage Microsoft.BingSports* | Remove-AppxPackage"
+echo Uninstalling Movies and TV
+powershell -command "Get-AppxPackage Microsoft.ZuneVideo* | Remove-AppxPackage"
+echo Uninstalling OneNote
+powershell -command "Get-AppxPackage Microsoft.Office.OneNote* | Remove-AppxPackage"
+echo Uninstalling Music
+powershell -command "Get-AppxPackage Microsoft.ZuneMusic* | Remove-AppxPackage"
+echo Uninstalling Skype
+powershell -command "Get-AppxPackage Microsoft.SkypeApp* | Remove-AppxPackage"
+echo Uninstalling Microsoft Solitaire Collection
+powershell -command "Get-AppxPackage Microsoft.MicrosoftSolitaireCollection* | Remove-AppxPackage"
+echo Uninstalling Sticky Notes
+powershell -command "Get-AppxPackage Microsoft.MicrosoftStickyNotes* | Remove-AppxPackage"
+echo Uninstalling Bing News
+powershell -command "Get-AppxPackage Microsoft.BingNews* | Remove-AppxPackage"
+echo Uninstalling Windows Alarms
+powershell -command "Get-AppxPackage Microsoft.WindowsAlarms* | Remove-AppxPackage"
+echo Uninstalling Windows Feedback Hub
+powershell -command "Get-AppxPackage Microsoft.WindowsFeedbackHub* | Remove-AppxPackage"
+echo Uninstalling Windows Sound Recorder
+powershell -command "Get-AppxPackage Microsoft.WindowsSoundRecorder* | Remove-AppxPackage"
+echo Uninstalling Windows Calender
+powershell -command "Get-AppxPackage Microsoft.Windows.Calendar* | Remove-AppxPackage"
+echo Uninstalling Todo
+powershell -command "Get-AppxPackage Microsoft.ToDo* | Remove-AppxPackage"
+echo Uninstalling Word
+powershell -command "Get-AppxPackage Microsoft.Office.Word* | Remove-AppxPackage"
+echo Uninstalling Excel
+powershell -command "Get-AppxPackage Microsoft.Office.Excel* | Remove-AppxPackage"
+echo Uninstalling PowerPoint
+powershell -command "Get-AppxPackage Microsoft.Office.PowerPoint* | Remove-AppxPackage"
+echo Uninstalling Outlook
+powershell -command "Get-AppxPackage Microsoft.Office.Outlook* | Remove-AppxPackage"
+echo Uninstalling Mixed Reality Portal
+powershell -command "Get-AppxPackage Microsoft.MixedReality.Portal* | Remove-AppxPackage"
+echo Uninstalling Microsoft News
+powershell -command "Get-AppxPackage Microsoft.MicrosoftNews* | Remove-AppxPackage"
+echo Uninstalling Get Help
+powershell -command "Get-AppxPackage Microsoft.GetHelp* | Remove-AppxPackage"
+echo Uninstalling MsPaint
+powershell -command "Get-AppxPackage Microsoft.MSPaint* | Remove-AppxPackage"
+echo Uninstalling Office
+powershell -command "Get-AppxPackage Microsoft.Office.* | Remove-AppxPackage"
+echo Uninstalling Your Phone
+powershell -command "Get-AppxPackage Microsoft.YourPhone* | Remove-AppxPackage"
+echo Uninstalling Print to pdf
+powershell -command "Get-AppxPackage Microsoft.MicrosoftPrinttoPDF* | Remove-AppxPackage"
+echo Uninstalling Skydrive
+powershell -command "Get-AppxPackage Microsoft.SkyDrive* | Remove-AppxPackage"
+echo Uninstalling Clipchamp
+powershell -command "Get-AppxPackage Clipchamp.Clipchamp* | Remove-AppxPackage"
+echo Uninstalling DevHome
+powershell -command "Get-AppxPackage Microsoft.Windows.DevHome* | Remove-AppxPackage"
+echo Uninstalling Maps
+powershell -command "Get-AppxPackage Microsoft.WindowsMaps* | Remove-AppxPackage"
+echo Uninstalling Office Hub
+powershell -command "Get-AppxPackage Microsoft.MicrosoftOfficeHub* | Remove-AppxPackage"
+echo Uninstalling Microsoft Teams
+powershell -command "Get-AppxPackage MSTeams* | Remove-AppxPackage"
+echo Uninstalling Screen Sketch
+powershell -command "Get-AppxPackage Microsoft.ScreenSketch* | Remove-AppxPackage"
+pause
 goto optmizewindows
 :optmizedesktop
 cls
