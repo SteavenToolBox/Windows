@@ -1,4 +1,4 @@
-Set-ExecutionPolicy RemoteSigned -scope CurrentUser
+Set-ExecutionPolicy Unrestricted -scope CurrentUser
 winget upgrade --all
 choco upgrade all -y
 scoop update
