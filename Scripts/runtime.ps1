@@ -64,6 +64,28 @@ function Install-Scoop {
     Write-Output "Sudo, Aria2, Wget, and Git are now installed"
 }
 
+function Install-NuGet {
+    # Check if NuGet is installed
+    if (-not (Get-Command -Name nuget -ErrorAction SilentlyContinue)) {
+        # Download NuGet.exe
+        $nugetUrl = "https://dist.nuget.org/win-x86-commandline/latest/nuget.exe"
+        $nugetExePath = Join-Path $env:TEMP "nuget.exe"
+        Invoke-WebRequest -Uri $nugetUrl -OutFile $nugetExePath
+
+        # Create directory for NuGet
+        $nugetDir = Join-Path $env:ProgramFiles "NuGet"
+        if (-not (Test-Path -Path $nugetDir)) {
+            New-Item -ItemType Directory -Path $nugetDir | Out-Null
+        }
+
+        # Move NuGet.exe to NuGet directory
+        $nugetExeDestination = Join-Path $nugetDir "nuget.exe"
+        Move-Item -Path $nugetExePath -Destination $nugetExeDestination -Force
+
+        # Add NuGet to PATH environment variable
+        $env:Path += ";$nugetDir"
+    }
+}
 
 function Install-WindowsUpdateCli {
     # Store the current ConfirmPreference
@@ -92,5 +114,6 @@ function Install-WindowsUpdateCli {
 Install-Chocolatey
 Install-Winget
 Install-Scoop
+Install-NuGet
 Install-WindowsUpdateCli
 pause
