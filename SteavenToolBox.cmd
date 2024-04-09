@@ -107,8 +107,14 @@ echo.
 goto optmizewindows
 :optionalfaetures
 cls
-powershell -command "Disable-WindowsOptionalFeature -Online -FeatureName Printing-XPSServices-Features, MicrosoftWindowsPowerShellV2, MicrosoftWindowsPowerShellV2Root, Internet-Explorer-Optional-amd64 -NoRestart"
-powershell -command "Enable-WindowsOptionalFeature -Online -FeatureName LegacyComponents, DirectPlay, NetFx3 -NoRestart"
+powershell -command "Disable-WindowsOptionalFeature -Online -FeatureName Printing-XPSServices-Features -NoRestart"
+powershell -command "Disable-WindowsOptionalFeature -Online -FeatureName MicrosoftWindowsPowerShellV2 -NoRestart"
+powershell -command "Disable-WindowsOptionalFeature -Online -FeatureName MicrosoftWindowsPowerShellV2Root -NoRestart"
+powershell -command "Disable-WindowsOptionalFeature -Online -FeatureName Internet-Explorer-Optional-amd64 -NoRestart"
+powershell -command "Enable-WindowsOptionalFeature -Online -FeatureName LegacyComponents -NoRestart"
+powershell -command "Enable-WindowsOptionalFeature -Online -FeatureName NetFx3 -NoRestart"
+powershell -command "Enable-WindowsOptionalFeature -Online -FeatureName NetFx3 -NoRestart"
+
 pause
 goto optmizewindows
 :appxdebloat
