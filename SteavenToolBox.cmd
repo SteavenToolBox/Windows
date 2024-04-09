@@ -88,7 +88,8 @@ echo 1. Desktop
 echo 2. Laptop
 echo 3. Without Laptop OR Desktop spifice Tweaks
 echo 4. Uninstall appx Blot
-echo 5. Chris Titus Tech Optmize Windows (Recommaded)
+echo 5. Tweak Optinal Features
+echo 6. Chris Titus Tech Optmize Windows (Recommaded)
 echo 0. Go back
 echo ---------------------------------------------------------------------------------------------------------------------
 set choice=
@@ -98,10 +99,17 @@ if '%choice%'=='1' goto optmizedesktop
 if '%choice%'=='2' goto optmizelaptop
 if '%choice%'=='3' cls && goto optmize && goto optmizewindows
 if '%choice%'=='4' goto appxdebloat
-if '%choice%'=='5' powershell -command "irm christitus.com/win | iex"
+if '%choice%'=='4' goto optionalfaetures
+if '%choice%'=='6' powershell -command "irm christitus.com/win | iex"
 if '%choice%'=='0' goto start
 echo "%choice%" is not valid, try again
 echo.
+goto optmizewindows
+:optionalfaetures
+cls
+powershell -command "Disable-WindowsOptionalFeature -Online -FeatureName Printing-XPSServices-Features, MicrosoftWindowsPowerShellV2, MicrosoftWindowsPowerShellV2Root, Internet-Explorer-Optional-amd64 -NoRestart"
+powershell -command "Enable-WindowsOptionalFeature -Online -FeatureName LegacyComponents, DirectPlay, NetFx3"
+pause
 goto optmizewindows
 :appxdebloat
 cls
