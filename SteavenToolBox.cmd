@@ -350,6 +350,14 @@ reg add "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Policies\Ex
 reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Multimedia\SystemProfile\Tasks\Games" /v "GPU Priority" /t REG_DWORD /d 8 /f> nul
 reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Multimedia\SystemProfile\Tasks\Games" /v "Priority" /t REG_DWORD /d 6 /f> nul
 reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Multimedia\SystemProfile\Tasks\Games" /v "Scheduling Category" /t REG_SZ /d "High" /f> nul
+Echo Disabling sound for Sticky Keys, Toggle Keys, and Filter Keys
+reg add "HKCU\Control Panel\Accessibility\StickyKeys" /v "SOUND" /t REG_SZ /d "" /f> nul
+reg add "HKCU\Control Panel\Accessibility\ToggleKeys" /v "SOUND" /t REG_SZ /d "" /f> nul
+reg add "HKCU\Control Panel\Accessibility\Keyboard Response" /v "SOUND" /t REG_SZ /d "" /f> nul
+Echo Disabling warning messages for Sticky Keys, Toggle Keys, and Filter Keys
+reg add "HKCU\Control Panel\Accessibility\StickyKeys" /v "Warning" /t REG_SZ /d "0" /f> nul
+reg add "HKCU\Control Panel\Accessibility\ToggleKeys" /v "Warning" /t REG_SZ /d "0" /f> nul
+reg add "HKCU\Control Panel\Accessibility\Keyboard Response" /v "Warning" /t REG_SZ /d "0" /f> nul
 pause
 goto optmizewindows
 :installapps
