@@ -114,7 +114,6 @@ powershell -command "Disable-WindowsOptionalFeature -Online -FeatureName Interne
 powershell -command "Enable-WindowsOptionalFeature -Online -FeatureName LegacyComponents -NoRestart"
 powershell -command "Enable-WindowsOptionalFeature -Online -FeatureName NetFx3 -NoRestart"
 powershell -command "Enable-WindowsOptionalFeature -Online -FeatureName NetFx3 -NoRestart"
-
 pause
 goto optmizewindows
 :appxdebloat
