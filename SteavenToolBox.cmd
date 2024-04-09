@@ -364,6 +364,23 @@ reg add "HKCU\Control Panel\Mouse" /v "MouseThreshold1" /t REG_SZ /d "0" /f> nul
 reg add "HKCU\Control Panel\Mouse" /v "MouseThreshold2" /t REG_SZ /d "0" /f> nul
 echo Enabling pointer shadow
 reg add "HKCU\Control Panel\Mouse" /v "MouseShadow" /t REG_DWORD /d "1" /f> nul
+echo Disabling showing frequently used folders in Quick Access
+reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer" /v "ShowFrequent" /t REG_DWORD /d "0" /f> nul
+echo Showing hidden files in File Explorer
+reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /v "Hidden" /t REG_DWORD /d "1" /f> nul
+echo Showing file extensions for unknown file types
+reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /v "HideFileExt" /t REG_DWORD /d "0" /f> nul
+echo Seting Windows Explorer to launch folders in a separate process
+reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /v "SeparateProcess" /t REG_DWORD /d "1" /f> nul
+echo Enabling check boxes for file and folder selection in File Explorer
+reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /v "CheckFileExtensions" /t REG_DWORD /d "1" /f> nul
+reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /v "AutoCheckSelect" /t REG_DWORD /d "1" /f> nul
+echo Showing all folders and libraries in File Explorer
+reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /v "NavPaneShowAllFolders" /t REG_DWORD /d "1" /f> nul
+reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /v "NavPaneShowLibraries" /t REG_DWORD /d "1" /f> nul
+echo Seting indexing options to index the entire C: drive
+reg add "HKLM\SOFTWARE\Microsoft\Windows Search\CrawlScopeManager\Windows\SystemIndex\DefaultRules" /v "{0}" /t REG_SZ /d "{1}" /f> nul
+reg add "HKLM\SOFTWARE\Microsoft\Windows Search\CrawlScopeManager\Windows\SystemIndex\DefaultRules" /v "{1}" /t REG_DWORD /d 1 /f> nul
 pause
 goto optmizewindows
 :installapps
