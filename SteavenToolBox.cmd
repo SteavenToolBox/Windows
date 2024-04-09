@@ -99,7 +99,7 @@ if '%choice%'=='1' goto optmizedesktop
 if '%choice%'=='2' goto optmizelaptop
 if '%choice%'=='3' cls && goto optmize && goto optmizewindows
 if '%choice%'=='4' goto appxdebloat
-if '%choice%'=='4' goto optionalfaetures
+if '%choice%'=='5' goto optionalfaetures
 if '%choice%'=='6' powershell -command "irm christitus.com/win | iex"
 if '%choice%'=='0' goto start
 echo "%choice%" is not valid, try again
