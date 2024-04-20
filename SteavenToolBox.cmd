@@ -196,6 +196,8 @@ echo Uninstalling Microsoft Teams
 powershell -command "Get-AppxPackage MSTeams* | Remove-AppxPackage"
 echo Uninstalling Screen Sketch
 powershell -command "Get-AppxPackage Microsoft.ScreenSketch* | Remove-AppxPackage"
+echo Uninstalling Outlook
+powershell -command "Get-AppxPackage *outlook* | Remove-AppxPackage"
 pause
 goto optmizewindows
 :optmizedesktop
