@@ -200,6 +200,10 @@ echo Uninstalling Outlook
 powershell -command "Get-AppxPackage *outlook* | Remove-AppxPackage"
 echo Uninstalling Quick Assist
 powershell -command "Get-AppxPackage *quickassist* | Remove-AppxPackage"
+echo Uninstalling Getstarted
+powershell -command "Get-AppxPackage Microsoft.Getstarted* | Remove-AppxPackage"
+echo Uninstalling PowerAutomate
+powershell -command "Get-AppxPackage Microsoft.PowerAutomate* | Remove-AppxPackage"
 pause
 goto optmizewindows
 :optmizedesktop
