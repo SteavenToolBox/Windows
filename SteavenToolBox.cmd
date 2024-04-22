@@ -120,10 +120,14 @@ goto optmizewindows
 cls
 echo Uninstalling Pepole
 powershell -command "Get-AppxPackage Microsoft.People* | Remove-AppxPackage"
-echo Uninstalling Big News
-powershell -command "Get-AppxPackage *bingweather* | Remove-AppxPackage"
-echo Uninstalling Big Sports
+echo Uninstalling Bing News
+powershell -command "Get-AppxPackage Microsoft.BingNews*  | Remove-AppxPackage"
+echo Uninstalling Bing Sports
 powershell -command "Get-AppxPackage *bingsports* | Remove-AppxPackage"
+echo Uninstalling Bing Search
+powershell -command "Get-AppxPackage Microsoft.BingSearch* | Remove-AppxPackage"
+echo Uninstalling Bing Weather
+powershell -command "Get-AppxPackage Microsoft.BingWeather* | Remove-AppxPackage"
 echo Uninstalling Movies and TV
 powershell -command "Get-AppxPackage *zunevideo* | Remove-AppxPackage"
 echo Uninstalling OneNote
@@ -132,8 +136,6 @@ echo Uninstalling windowscommunicationsapps
 powershell -command "Get-AppxPackage *windowscommunicationsapps* | Remove-AppxPackage"
 echo Uninstalling Cortana
 powershell -command "Get-AppxPackage Microsoft.549981C3F5F10 | Remove-AppxPackage"
-echo Uninstalling Big Weather
-powershell -command "Get-AppxPackage Microsoft.BingWeather* | Remove-AppxPackage"
 echo Uninstalling Bing Sports
 powershell -command "Get-AppxPackage Microsoft.BingSports* | Remove-AppxPackage"
 echo Uninstalling Movies and TV
@@ -148,8 +150,6 @@ echo Uninstalling Microsoft Solitaire Collection
 powershell -command "Get-AppxPackage Microsoft.MicrosoftSolitaireCollection* | Remove-AppxPackage"
 echo Uninstalling Sticky Notes
 powershell -command "Get-AppxPackage Microsoft.MicrosoftStickyNotes* | Remove-AppxPackage"
-echo Uninstalling Bing News
-powershell -command "Get-AppxPackage Microsoft.BingNews* | Remove-AppxPackage"
 echo Uninstalling Windows Alarms
 powershell -command "Get-AppxPackage Microsoft.WindowsAlarms* | Remove-AppxPackage"
 echo Uninstalling Windows Feedback Hub
@@ -197,9 +197,9 @@ powershell -command "Get-AppxPackage MSTeams* | Remove-AppxPackage"
 echo Uninstalling Screen Sketch
 powershell -command "Get-AppxPackage Microsoft.ScreenSketch* | Remove-AppxPackage"
 echo Uninstalling Outlook
-powershell -command "Get-AppxPackage *outlook* | Remove-AppxPackage"
+powershell -command "Get-AppxPackage Microsoft.OutlookForWindows* | Remove-AppxPackage"
 echo Uninstalling Quick Assist
-powershell -command "Get-AppxPackage *quickassist* | Remove-AppxPackage"
+powershell -command "Get-AppxPackage MicrosoftCorporationII.QuickAssist* | Remove-AppxPackage"
 echo Uninstalling Getstarted
 powershell -command "Get-AppxPackage Microsoft.Getstarted* | Remove-AppxPackage"
 echo Uninstalling PowerAutomate
