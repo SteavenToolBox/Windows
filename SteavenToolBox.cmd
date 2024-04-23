@@ -204,6 +204,8 @@ echo Uninstalling Getstarted
 powershell -command "Get-AppxPackage Microsoft.Getstarted* | Remove-AppxPackage"
 echo Uninstalling PowerAutomate
 powershell -command "Get-AppxPackage Microsoft.PowerAutomate* | Remove-AppxPackage"
+echo Uninstalling Copilot
+powershell -command "Get-AppxPackage *Windows.Ai.Copilot.Provider* | Remove-AppxPackage"
 pause
 goto optmizewindows
 :optmizedesktop
