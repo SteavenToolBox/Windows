@@ -88,8 +88,9 @@ echo 1. Desktop
 echo 2. Laptop
 echo 3. Without Laptop OR Desktop spifice Tweaks
 echo 4. Uninstall appx Blot
-echo 5. Tweak Optinal Features
-echo 6. Chris Titus Tech Optmize Windows (Recommaded)
+echo 5. Uninstall legecy Blot
+echo 6. Tweak Optinal Features
+echo 7. Chris Titus Tech Optmize Windows (Recommaded)
 echo 0. Go back
 echo ---------------------------------------------------------------------------------------------------------------------
 set choice=
@@ -99,11 +100,18 @@ if '%choice%'=='1' goto optmizedesktop
 if '%choice%'=='2' goto optmizelaptop
 if '%choice%'=='3' cls && goto optmize && goto optmizewindows
 if '%choice%'=='4' goto appxdebloat
-if '%choice%'=='5' goto optionalfaetures
-if '%choice%'=='6' powershell -command "irm christitus.com/win | iex"
+if '%choice%'=='5' goto legecyblot
+if '%choice%'=='6' goto optionalfaetures
+if '%choice%'=='7' powershell -command "irm christitus.com/win | iex"
 if '%choice%'=='0' goto start
 echo "%choice%" is not valid, try again
 echo.
+goto optmizewindows
+:legecyblot
+cls
+echo Uninstalling Snipping Tool
+"C:\Windows\System32\SnippingTool.exe" /uninstall> nul
+pause
 goto optmizewindows
 :optionalfaetures
 cls
