@@ -93,6 +93,9 @@ function Install-WindowsUpdateCli {
 
     # Set the ConfirmPreference to "Yes" only for this function
     $ConfirmPreference = 'Yes'
+    
+    # Set PSGallery to Trusted
+    Set-PSRepository -Name 'PSGallery' -InstallationPolicy Trusted
 
     # Check if PSWindowsUpdate module is installed
     if (-not (Get-Module -Name PSWindowsUpdate -ListAvailable)) {
