@@ -39,7 +39,7 @@ set choice=
 set /p choice=Type the number.
 if not '%choice%'=='' set choice=%choice:~0,100%
 if '%choice%'=='1' goto optmizewindows
-if '%choice%'=='2' powershell.exe "iex ((New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/SteavenToolBox/Windows/main/Scripts/update.ps1'))"
+if '%choice%'=='2' topgrade && goto start
 if '%choice%'=='3' goto installapps
 if '%choice%'=='4' goto updatefix
 if '%choice%'=='5' goto crack
