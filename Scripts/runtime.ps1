@@ -60,7 +60,7 @@ function Install-Scoop {
     scoop install git
     scoop bucket add extras
     Write-Output "Scoop is now installed"
-    scoop install sudo aria2 wget git grep
+    scoop install sudo aria2 wget git grep gsudo
     Write-Output "Sudo, Aria2, Wget, and Git are now installed"
 }
 
