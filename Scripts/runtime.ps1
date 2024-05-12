@@ -137,7 +137,6 @@ function Install-Topgrade {
 Install-Chocolatey
 Install-Winget
 Install-Scoop
-Install-NuGet
 Install-WindowsUpdateCli
 Install-Topgrade
 pause
