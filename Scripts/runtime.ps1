@@ -119,7 +119,7 @@ function Install-Topgrade {
         Write-Host "Topgrade is already installed."
     } catch {
         Write-Host "Topgrade is not installed. Attempting to install using winget..."
-        winget install -e --id r-darwish.topgrade
+        winget install -e --id topgrade-rs.topgrade
         Write-Host "Topgrade installation complete."
     }
     
