@@ -70,20 +70,40 @@ function Install-NuGet {
         # Download NuGet.exe
         $nugetUrl = "https://dist.nuget.org/win-x86-commandline/latest/nuget.exe"
         $nugetExePath = Join-Path $env:TEMP "nuget.exe"
-        Invoke-WebRequest -Uri $nugetUrl -OutFile $nugetExePath
+        
+        try {
+            Invoke-WebRequest -Uri $nugetUrl -OutFile $nugetExePath
+            Write-Host "NuGet.exe downloaded successfully."
+        } catch {
+            Write-Error "Failed to download NuGet.exe."
+            return
+        }
 
         # Create directory for NuGet
         $nugetDir = Join-Path $env:ProgramFiles "NuGet"
         if (-not (Test-Path -Path $nugetDir)) {
             New-Item -ItemType Directory -Path $nugetDir | Out-Null
+            Write-Host "NuGet directory created."
         }
 
         # Move NuGet.exe to NuGet directory
         $nugetExeDestination = Join-Path $nugetDir "nuget.exe"
         Move-Item -Path $nugetExePath -Destination $nugetExeDestination -Force
+        Write-Host "NuGet.exe moved to the NuGet directory."
 
         # Add NuGet to PATH environment variable
         $env:Path += ";$nugetDir"
+        [Environment]::SetEnvironmentVariable("Path", $env:Path, [EnvironmentVariableTarget]::Machine)
+        Write-Host "NuGet directory added to PATH."
+
+        # Verify installation
+        if (Get-Command -Name nuget -ErrorAction SilentlyContinue) {
+            Write-Host "NuGet installed successfully."
+        } else {
+            Write-Error "NuGet installation failed."
+        }
+    } else {
+        Write-Host "NuGet is already installed."
     }
 }
 
@@ -137,6 +157,7 @@ function Install-Topgrade {
 Install-Chocolatey
 Install-Winget
 Install-Scoop
+Install-NuGet
 Install-WindowsUpdateCli
 Install-Topgrade
 pause
