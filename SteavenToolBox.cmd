@@ -126,30 +126,24 @@ pause
 goto optmizewindows
 :appxdebloat
 cls
-echo Uninstalling Pepole
+echo Uninstalling People
 powershell -command "Get-AppxPackage Microsoft.People* | Remove-AppxPackage"
 echo Uninstalling Bing News
-powershell -command "Get-AppxPackage Microsoft.BingNews*  | Remove-AppxPackage"
+powershell -command "Get-AppxPackage Microsoft.BingNews* | Remove-AppxPackage"
 echo Uninstalling Bing Sports
-powershell -command "Get-AppxPackage *bingsports* | Remove-AppxPackage"
+powershell -command "Get-AppxPackage Microsoft.BingSports* | Remove-AppxPackage"
 echo Uninstalling Bing Search
 powershell -command "Get-AppxPackage Microsoft.BingSearch* | Remove-AppxPackage"
 echo Uninstalling Bing Weather
 powershell -command "Get-AppxPackage Microsoft.BingWeather* | Remove-AppxPackage"
-echo Uninstalling Movies and TV
-powershell -command "Get-AppxPackage *zunevideo* | Remove-AppxPackage"
-echo Uninstalling OneNote
-powershell -command "Get-AppxPackage *onenote* | Remove-AppxPackage"
-echo Uninstalling windowscommunicationsapps
-powershell -command "Get-AppxPackage *windowscommunicationsapps* | Remove-AppxPackage"
-echo Uninstalling Cortana
-powershell -command "Get-AppxPackage Microsoft.549981C3F5F10 | Remove-AppxPackage"
-echo Uninstalling Bing Sports
-powershell -command "Get-AppxPackage Microsoft.BingSports* | Remove-AppxPackage"
-echo Uninstalling Movies and TV
+echo Uninstalling Movies TV
 powershell -command "Get-AppxPackage Microsoft.ZuneVideo* | Remove-AppxPackage"
 echo Uninstalling OneNote
 powershell -command "Get-AppxPackage Microsoft.Office.OneNote* | Remove-AppxPackage"
+echo Uninstalling Windows Mail and Calendar
+powershell -command "Get-AppxPackage *windowscommunicationsapps* | Remove-AppxPackage"
+echo Uninstalling Cortana
+powershell -command "Get-AppxPackage Microsoft.549981C3F5F10 | Remove-AppxPackage"
 echo Uninstalling Music
 powershell -command "Get-AppxPackage Microsoft.ZuneMusic* | Remove-AppxPackage"
 echo Uninstalling Skype
@@ -158,15 +152,15 @@ echo Uninstalling Microsoft Solitaire Collection
 powershell -command "Get-AppxPackage Microsoft.MicrosoftSolitaireCollection* | Remove-AppxPackage"
 echo Uninstalling Sticky Notes
 powershell -command "Get-AppxPackage Microsoft.MicrosoftStickyNotes* | Remove-AppxPackage"
-echo Uninstalling Windows Alarms
+echo Uninstalling Windows Alarms Clock
 powershell -command "Get-AppxPackage Microsoft.WindowsAlarms* | Remove-AppxPackage"
 echo Uninstalling Windows Feedback Hub
 powershell -command "Get-AppxPackage Microsoft.WindowsFeedbackHub* | Remove-AppxPackage"
 echo Uninstalling Windows Sound Recorder
 powershell -command "Get-AppxPackage Microsoft.WindowsSoundRecorder* | Remove-AppxPackage"
-echo Uninstalling Windows Calender
-powershell -command "Get-AppxPackage Microsoft.Windows.Calendar* | Remove-AppxPackage"
-echo Uninstalling Todo
+echo Uninstalling Windows Calendar
+powershell -command "Get-AppxPackage Microsoft.WindowsCalendar* | Remove-AppxPackage"
+echo Uninstalling Microsoft To-Do
 powershell -command "Get-AppxPackage Microsoft.ToDo* | Remove-AppxPackage"
 echo Uninstalling Word
 powershell -command "Get-AppxPackage Microsoft.Office.Word* | Remove-AppxPackage"
@@ -182,19 +176,19 @@ echo Uninstalling Microsoft News
 powershell -command "Get-AppxPackage Microsoft.MicrosoftNews* | Remove-AppxPackage"
 echo Uninstalling Get Help
 powershell -command "Get-AppxPackage Microsoft.GetHelp* | Remove-AppxPackage"
-echo Uninstalling MsPaint
+echo Uninstalling Paint
 powershell -command "Get-AppxPackage Microsoft.MSPaint* | Remove-AppxPackage"
 echo Uninstalling Office
 powershell -command "Get-AppxPackage Microsoft.Office.* | Remove-AppxPackage"
 echo Uninstalling Your Phone
 powershell -command "Get-AppxPackage Microsoft.YourPhone* | Remove-AppxPackage"
-echo Uninstalling Print to pdf
+echo Uninstalling Print to PDF
 powershell -command "Get-AppxPackage Microsoft.MicrosoftPrinttoPDF* | Remove-AppxPackage"
-echo Uninstalling Skydrive
+echo Uninstalling SkyDrive
 powershell -command "Get-AppxPackage Microsoft.SkyDrive* | Remove-AppxPackage"
 echo Uninstalling Clipchamp
 powershell -command "Get-AppxPackage Clipchamp.Clipchamp* | Remove-AppxPackage"
-echo Uninstalling DevHome
+echo Uninstalling Dev Home
 powershell -command "Get-AppxPackage Microsoft.Windows.DevHome* | Remove-AppxPackage"
 echo Uninstalling Maps
 powershell -command "Get-AppxPackage Microsoft.WindowsMaps* | Remove-AppxPackage"
@@ -202,17 +196,17 @@ echo Uninstalling Office Hub
 powershell -command "Get-AppxPackage Microsoft.MicrosoftOfficeHub* | Remove-AppxPackage"
 echo Uninstalling Microsoft Teams
 powershell -command "Get-AppxPackage MSTeams* | Remove-AppxPackage"
-echo Uninstalling Screen Sketch
+echo Uninstalling Snip Sketch
 powershell -command "Get-AppxPackage Microsoft.ScreenSketch* | Remove-AppxPackage"
-echo Uninstalling Outlook
+echo Uninstalling Outlook for Windows
 powershell -command "Get-AppxPackage Microsoft.OutlookForWindows* | Remove-AppxPackage"
 echo Uninstalling Quick Assist
 powershell -command "Get-AppxPackage MicrosoftCorporationII.QuickAssist* | Remove-AppxPackage"
-echo Uninstalling Getstarted
+echo Uninstalling Get Started
 powershell -command "Get-AppxPackage Microsoft.Getstarted* | Remove-AppxPackage"
-echo Uninstalling PowerAutomate
+echo Uninstalling Power Automate
 powershell -command "Get-AppxPackage Microsoft.PowerAutomate* | Remove-AppxPackage"
-echo Uninstalling Copilot
+echo Uninstalling Windows Copilot
 powershell -command "Get-AppxPackage *Windows.Ai.Copilot.Provider* | Remove-AppxPackage"
 pause
 goto optmizewindows
