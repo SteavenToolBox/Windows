@@ -329,6 +329,7 @@ echo Hide tray icons...
 reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer" /v "EnableAutoTray" /t REG_DWORD /d "1" /f> nul
 echo Enabling NumLock after startup...
 reg add "HKU\.DEFAULT\Control Panel\Keyboard" /v "InitialKeyboardIndicators" /t REG_DWORD /d "558319670" /f> nul
+reg add "HKEY_USERS\.Default\Control Panel\Keyboard" /v InitialKeyboardIndicators /t REG_SZ /d 2 /f> nul
 echo Changing default Explorer view to This PC...
 reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /v "LaunchTo" /t REG_DWORD /d "1" /f> nul
 echo Using regedit to improve RAM 
@@ -360,8 +361,37 @@ reg add HKCU\Software\Microsoft\Windows\CurrentVersion\ContentDeliveryManager /v
 reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\Configuration Manager" /v EnablePeriodicBackup /t REG_DWORD /d 1 /f> nul
 reg add HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer /v link /t REG_BINARY /d 00000000 /f> nul
 reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Input\Settings" /v EnableExpressiveInputShellHotkey /t REG_DWORD /d 1 /f> nul
+reg add HKLM\SOFTWARE\Policies\Microsoft\OneDrive /v KFMBlockOptIn /t REG_DWORD /d 1 /f> nul
+reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\Explorer" /v NoNewAppAlert /t REG_DWORD /d 1 /f> nul
+reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\CrashControl" /v DisplayParameters /t REG_DWORD /d 1 /f> nul
+reg add "HKEY_CLASSES_ROOT\CABFolder\Shell\RunAs" /ve /d "Install this update" /f> nul
+reg add "HKEY_CLASSES_ROOT\CABFolder\Shell\RunAs" /v "HasLUAShield" /d "" /f> nul
+reg add "HKEY_CLASSES_ROOT\CABFolder\Shell\RunAs\Command" /ve /d "cmd /k dism /online /add-package /packagepath:\"%%1\"" /f> nul
+reg add "HKEY_CLASSES_ROOT\DesktopBackground\Shell\KillNotResponding" /ve /d "Kill not responding tasks" /f> nul
+reg add "HKEY_CLASSES_ROOT\DesktopBackground\Shell\KillNotResponding" /v "icon" /d "taskmgr.exe,-30651" /f> nul
+reg add "HKEY_CLASSES_ROOT\DesktopBackground\Shell\KillNotResponding" /v "MUIVerb" /d "Kill not responding tasks" /f> nul
+reg add "HKEY_CLASSES_ROOT\DesktopBackground\Shell\KillNotResponding" /v "Position" /d "Top" /f> nul
+reg add "HKEY_CLASSES_ROOT\DesktopBackground\Shell\KillNotResponding\command" /ve /d "cmd.exe /K taskkill.exe /F /FI \"status eq NOT RESPONDING\"" /f> nul
+reg add "HKEY_CLASSES_ROOT\CLSID\{580722ff-16a7-44c1-bf74-7e1acd00f4f9}" /ve /d "@%SystemRoot%\\System32\\themecpl.dll,-1#immutable1" /f> nul
+reg add "HKEY_CLASSES_ROOT\CLSID\{580722ff-16a7-44c1-bf74-7e1acd00f4f9}" /v "InfoTip" /d "@%SystemRoot%\\System32\\themecpl.dll,-2#immutable1" /f> nul
+reg add "HKEY_CLASSES_ROOT\CLSID\{580722ff-16a7-44c1-bf74-7e1acd00f4f9}" /v "System.ApplicationName" /d "Microsoft.Personalization" /f> nul
+reg add "HKEY_CLASSES_ROOT\CLSID\{580722ff-16a7-44c1-bf74-7e1acd00f4f9}" /v "System.ControlPanel.Category" /t REG_DWORD /d 1 /f> nul
+reg add "HKEY_CLASSES_ROOT\CLSID\{580722ff-16a7-44c1-bf74-7e1acd00f4f9}" /v "System.Software.TasksFileUrl" /d "Internal" /f> nul
+reg add "HKEY_CLASSES_ROOT\CLSID\{580722ff-16a7-44c1-bf74-7e1acd00f4f9}\DefaultIcon" /ve /d "%SystemRoot%\\System32\\themecpl.dll,-1" /f> nul
+reg add "HKEY_CLASSES_ROOT\CLSID\{580722ff-16a7-44c1-bf74-7e1acd00f4f9}\Shell\Open\command" /ve /d "explorer shell:::{ED834ED6-4B5A-4bfe-8F11-A626DCB6A921}" /f> nul
+reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\ControlPanel\NameSpace\{580722ff-16a7-44c1-bf74-7e1acd00f4f9}" /ve /d "Personalization" /f> nul
+reg add "HKEY_CLASSES_ROOT\CLSID\{36eef7db-88ad-4e81-ad49-0e313f0c35f8}" /ve /d "@%SystemRoot%\\system32\\shell32.dll,-22068" /f> nul
+reg add "HKEY_CLASSES_ROOT\CLSID\{36eef7db-88ad-4e81-ad49-0e313f0c35f8}" /v "InfoTip" /d "@%SystemRoot%\\system32\\shell32.dll,-22580" /f> nul
+reg add "HKEY_CLASSES_ROOT\CLSID\{36eef7db-88ad-4e81-ad49-0e313f0c35f8}" /v "System.ApplicationName" /d "Microsoft.WindowsUpdate" /f> nul
+reg add "HKEY_CLASSES_ROOT\CLSID\{36eef7db-88ad-4e81-ad49-0e313f0c35f8}" /v "System.ControlPanel.Category" /t REG_DWORD /d 5 /f> nul
+reg add "HKEY_CLASSES_ROOT\CLSID\{36eef7db-88ad-4e81-ad49-0e313f0c35f8}" /v "System.Software.TasksFileUrl" /d "Internal" /f> nul
+reg add "HKEY_CLASSES_ROOT\CLSID\{36eef7db-88ad-4e81-ad49-0e313f0c35f8}\DefaultIcon" /ve /d "shell32.dll,-47" /f> nul
+reg add "HKEY_CLASSES_ROOT\CLSID\{36eef7db-88ad-4e81-ad49-0e313f0c35f8}\Shell\Open\command" /ve /t REG_EXPAND_SZ /d "cmd.exe /C start /MIN /D "%SystemRoot%\system32" /high wscript.exe /E:JScript"> nul
+reg add "HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer" /v link /t REG_BINARY /d 00000000 /f> nul
+reg add "HKEY_USERS\.DEFAULT\Software\Microsoft\Windows\CurrentVersion\Explorer" /v link /t REG_BINARY /d 00000000 /f> nul
 echo More Tweaks
 reg add "HKEY_CURRENT_USER\SOFTWARE\Policies\Microsoft\Windows\CloudContent" /v "DisableTailoredExperiencesWithDiagnosticData" /t REG_DWORD /d 1 /f> nul
+reg add "HKEY_USERS\.DEFAULT\Software\Policies\Microsoft\Windows\CloudContent" /v "DisableTailoredExperiencesWithDiagnosticData" /t REG_DWORD /d 1 /f> nul
 reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\FileSystem" /v "LongPathsEnabled" /t REG_DWORD /d 1 /f> nul
 reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\DriverSearching" /v "SearchOrderConfig" /t REG_DWORD /d 1 /f> nul
 reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Multimedia\SystemProfile" /v "SystemResponsiveness" /t REG_DWORD /d 0 /f> nul
@@ -372,6 +402,9 @@ reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\LanmanServer\Param
 reg add "HKEY_CURRENT_USER\SOFTWARE\Policies\Microsoft\Windows\Windows Feeds" /v "EnableFeeds" /t REG_DWORD /d 0 /f> nul
 reg add "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Feeds" /v "ShellFeedsTaskbarViewMode" /t REG_DWORD /d 2 /f> nul
 reg add "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" /v "HideSCAMeetNow" /t REG_DWORD /d 1 /f> nul
+reg add "HKEY_USERS\.DEFAULT\Software\Policies\Microsoft\Windows\Windows Feeds" /v "EnableFeeds" /t REG_DWORD /d 0 /f> nul
+reg add "HKEY_USERS\.DEFAULT\Software\Microsoft\Windows\CurrentVersion\Feeds" /v "ShellFeedsTaskbarViewMode" /t REG_DWORD /d 2 /f> nul
+reg add "HKEY_USERS\.DEFAULT\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" /v "HideSCAMeetNow" /t REG_DWORD /d 1 /f> nul
 reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Multimedia\SystemProfile\Tasks\Games" /v "GPU Priority" /t REG_DWORD /d 8 /f> nul
 reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Multimedia\SystemProfile\Tasks\Games" /v "Priority" /t REG_DWORD /d 6 /f> nul
 reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Multimedia\SystemProfile\Tasks\Games" /v "Scheduling Category" /t REG_SZ /d "High" /f> nul
@@ -431,10 +464,15 @@ echo disabling news
 reg add "HKLM\SOFTWARE\Policies\Microsoft\Dsh" /v "AllowNewsAndInterests" /t REG_DWORD /d "0" /f> nul
 echo disabling Windows Copilot
 reg add "HKEY_CURRENT_USER\Software\Policies\Microsoft\Windows\WindowsCopilot" /v TurnOffWindowsCopilot /t REG_DWORD /d 1 /f> nul
+reg add "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /v ShowCopilotButton /t REG_DWORD /d 00000000 /f> nul
+reg add "HKEY_USERS\.DEFAULT\Software\Policies\Microsoft\Windows\WindowsCopilot" /v TurnOffWindowsCopilot /t REG_DWORD /d 1 /f> nul
+reg add "HKEY_USERS\.DEFAULT\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /v ShowCopilotButton /t REG_DWORD /d 00000000 /f> nul
 echo making taskbar at left as windows 10 as it should be
 reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /v TaskbarAl /t REG_DWORD /d 0 /f> nul
 echo making old right click menus default as windows 10 as it should be
 reg add "HKCU\Software\Classes\CLSID\{86ca1aa0-34aa-4e8b-a509-50c905bae2a2}\InprocServer32" /ve /d "" /f> nul
+reg add "HKEY_CURRENT_USER\Software\Classes\CLSID\{86ca1aa0-34aa-4e8b-a509-50c905bae2a2}\InprocServer32" /ve /d "" /f> nul
+reg add "HKEY_USERS\.DEFAULT\Software\Classes\CLSID\{86ca1aa0-34aa-4e8b-a509-50c905bae2a2}\InprocServer32" /ve /d "" /f> nul
 echo THIO joe gpt
 reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\PolicyManager\default\Experience\AllowWindowsConsumerFeatures" /v "value" /t REG_DWORD /d 0 /f> nul
 reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\CloudContent" /v "DisableWindowsTips" /t REG_DWORD /d 1 /f> nul
@@ -444,6 +482,10 @@ reg add "HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeli
 reg add "HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager" /v "SubscribedContent-338389Enabled" /t REG_DWORD /d 0 /f> nul
 reg add "HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager" /v "SubscribedContent-353694Enabled" /t REG_DWORD /d 0 /f> nul
 reg add "HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager" /v "SubscribedContent-353696Enabled" /t REG_DWORD /d 0 /f> nul
+reg add "HKEY_USERS\.DEFAULT\Software\Microsoft\Windows\CurrentVersion\ContentDeliveryManager" /v "SubscribedContent-338388Enabled" /t REG_DWORD /d 0 /f> nul
+reg add "HKEY_USERS\.DEFAULT\Software\Microsoft\Windows\CurrentVersion\ContentDeliveryManager" /v "SubscribedContent-338389Enabled" /t REG_DWORD /d 0 /f> nul
+reg add "HKEY_USERS\.DEFAULT\Software\Microsoft\Windows\CurrentVersion\ContentDeliveryManager" /v "SubscribedContent-353694Enabled" /t REG_DWORD /d 0 /f> nul
+reg add "HKEY_USERS\.DEFAULT\Software\Microsoft\Windows\CurrentVersion\ContentDeliveryManager" /v "SubscribedContent-353696Enabled" /t REG_DWORD /d 0 /f> nul
 reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\Personalization" /v "NoLockScreen" /t REG_DWORD /d 1 /f> nul
 reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\DataCollection" /v "AllowTelemetry" /t REG_DWORD /d 0 /f> nul
 reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\AdvertisingInfo" /v "DisabledByGroupPolicy" /t REG_DWORD /d 1 /f> nul
