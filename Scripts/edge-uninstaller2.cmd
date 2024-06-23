@@ -53,3 +53,5 @@ sc delete edgeupdatem
 
 schtasks /delete /tn "MicrosoftEdgeUpdateTaskMachineCore{04F36E1F-5519-4151-A6F3-BFE552405418}" /f
 schtasks /delete /tn "MicrosoftEdgeUpdateTaskMachineUA{CE09116A-59BE-406F-A83B-C465FACE32E2}" /f
+
+pause
