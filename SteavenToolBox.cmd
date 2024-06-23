@@ -247,10 +247,13 @@ reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\Windows Search" /v "DisableWeb
 reg add "HKCU\Software\Policies\Microsoft\Windows\Explorer" /v "DisableSearchBoxSuggestions" /t REG_DWORD /d "1" /f> nul
 reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\Windows Search" /v "BingSearchEnabled" /t REG_DWORD /d "0" /f> nul
 reg add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Search" /v BingSearchEnabled /t REG_DWORD /d 0 /f> nul
+
 echo Hiding Cortana From Taskbar
 reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /v "ShowCortanaButton" /t REG_DWORD /d "0" /f> nul
+
 echo Hiding Teams Icon From Taskbar
 reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /v "TaskbarMn" /t REG_DWORD /d "0" /f> nul
+
 echo Disabling Telemetry...
 reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\DataCollection" /v "AllowTelemetry" /t REG_DWORD /d "0" /f> nul
 reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\DataCollection" /v "DoNotShowFeedbackNotifications" /t REG_DWORD /d "0" /f> nul
@@ -261,9 +264,11 @@ schtasks /Change /TN "Microsoft\Windows\Autochk\Proxy" /Disable> nul
 schtasks /Change /TN "Microsoft\Windows\Customer Experience Improvement Program\Consolidator" /Disable> nul
 schtasks /Change /TN "Microsoft\Windows\Customer Experience Improvement Program\UsbCeip" /Disable> nul
 schtasks /Change /TN "Microsoft\Windows\DiskDiagnostic\Microsoft-Windows-DiskDiagnosticDataCollector" /Disable> nul
+
 echo Disabling Wi-Fi Sense...
 reg add "HKLM\SOFTWARE\Microsoft\PolicyManager\default\Wifi\AllowAutoConnectToWiFiSenseHotspots" /v "value" /t REG_DWORD /d "0" /f> nul
 reg add "HKLM\SOFTWARE\Microsoft\PolicyManager\default\Wifi\AllowWiFiHotSpotReporting" /v "Value" /t REG_DWORD /d "0" /f> nul
+
 echo Disabling Application suggestions...
 reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager" /v "ContentDeliveryAllowed" /t REG_DWORD /d "0" /f> nul
 reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager" /v "OemPreInstalledAppsEnabled" /t REG_DWORD /d "0" /f> nul
@@ -277,63 +282,80 @@ reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager" 
 reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager" /v "SubscribedContent-338393Enabled" /t REG_DWORD /d "0" /f> nul
 reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager" /v "SubscribedContent-353694Enabled" /t REG_DWORD /d "0" /f> nul
 reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager" /v "SubscribedContent-353696Enabled" /t REG_DWORD /d "0" /f> nul
-reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager" /v "SystemPaneSuggestionsEnabled" /t REG_DWORD /d "0" /f> nul
-reg add "HKLM\SOFTWARE\SOFTWARE\Policies\Microsoft\Windows\CloudContent" /v "DisableWindowsConsumerFeatures" /t REG_DWORD /d "1" /f> nul
+
 echo Disabling Activity History...
 reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\System" /v "EnableActivityFeed" /t REG_DWORD /d "0" /f> nul
 reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\System" /v "PublishUserActivities" /t REG_DWORD /d "0" /f> nul
 reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\System" /v "UploadUserActivities" /t REG_DWORD /d "0" /f> nul
+
 echo Disabling Location Tracking...
 reg add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\location" /v "Value" /t REG_SZ /d "Deny" /f> nul
 reg add "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Sensor\Overrides\{BFA794E4-F964-4FDB-90F6-51056BFE4B44}" /v "SensorPermissionState" /t REG_DWORD /d "0" /f> nul
 reg add "HKLM\SYSTEM\CurrentControlSet\Services\lfsvc\Service\Configuration" /v "Status" /t REG_DWORD /d "0" /f> nul
+
 echo Disabling Feedback...
 reg add "HKCU\SOFTWARE\Microsoft\Siuf\Rules" /v "NumberOfSIUFInPeriod" /t REG_DWORD /d "0" /f> nul
 schtasks /Change /TN "Microsoft\Windows\Feedback\Siuf\DmClient" /Disable> nul
 schtasks /Change /TN "Microsoft\Windows\Feedback\Siuf\DmClientOnScenarioDownload" /Disable> nul
 echo Uninstalling Feedback Hub
 powershell -command "Get-AppxPackage *WindowsFeedbackHub* | Remove-AppxPackage"> nul
+
 echo Disabling Advertising ID...
 reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\AdvertisingInfo" /v "DisabledByGroupPolicy" /t REG_DWORD /d "1" /f> nul
+
 echo Disabling Error reporting...
 reg add "HKLM\SOFTWARE\Microsoft\Windows\Windows Error Reporting" /v "Disabled" /t REG_DWORD /d "1" /f> nul
+
 echo Restricting Windows Update P2P only to local network...
 reg add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\DeliveryOptimization\Config" /v "DODownloadMode" /t REG_DWORD /d "1" /f> nul
+
 echo Stopping and disabling Diagnostics Tracking Service...
 sc stop DiagTrack> nul
 sc config "DiagTrack" start=disabled> nul
+
 echo Stopping and disabling WAP Push Service...
 sc stop dmwappushservice> nul
 sc config "dmwappushservice" start=disabled> nul
+
 echo Enabling F8 boot menu options...
 bcdedit /set {current} bootmenupolicy Legacy> nul
+
 echo Stopping and disabling Home Groups services...
 sc stop HomeGroupListener> nul
 sc config "HomeGroupListener" start=disabled> nul
 sc stop HomeGroupProvider> nul
 sc config "HomeGroupProvider" start=disabled> nul
+
 echo Disabling Remote Assistance...
 reg add "HKLM\SYSTEM\CurrentControlSet\Control\Remote Assistance" /v "fAllowToGetHelp" /t REG_DWORD /d "0" /f> nul
+
 echo Enabling Hibernation...
-reg add "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Power" /v "HibernteEnabled" /t REG_DWORD /d "1" /f> nul
+reg add "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Power" /v "HibernateEnabled" /t REG_DWORD /d "1" /f> nul
 reg add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\FlyoutMenuSettings" /v "ShowHibernateOption" /t REG_DWORD /d "1" /f> nul
+
 echo Showing file operations details...
 reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\OperationStatusManager" /v "EnthusiastMode" /t REG_DWORD /d "1" /f> nul
+
 echo Hiding Cortana Button...
 reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /v "ShowCortanaButton" /t REG_DWORD /d "0" /f> nul
+
 echo Hiding Task View button...
 reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /v "ShowTaskViewButton" /t REG_DWORD /d "0" /f> nul
+
 echo Hiding People icon...
 reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced\People" /v "PeopleBand" /t REG_DWORD /d "0" /f> nul
+
 echo Hide tray icons...
 reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer" /v "EnableAutoTray" /t REG_DWORD /d "1" /f> nul
+
 echo Enabling NumLock after startup...
 reg add "HKU\.DEFAULT\Control Panel\Keyboard" /v "InitialKeyboardIndicators" /t REG_DWORD /d "558319670" /f> nul
 reg add "HKEY_USERS\.Default\Control Panel\Keyboard" /v InitialKeyboardIndicators /t REG_SZ /d 2 /f> nul
+
 echo Changing default Explorer view to This PC...
 reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /v "LaunchTo" /t REG_DWORD /d "1" /f> nul
-echo Using regedit to improve RAM 
-echo Making System Responsiveness Better using regedit
+
+echo Improving System Responsiveness using regedit
 reg add "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Multimedia\SystemProfile" /v "NetworkThrottlingIndex" /t REG_DWORD /d "10" /f> nul
 reg add "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Multimedia\SystemProfile" /v "SystemResponsiveness" /t REG_DWORD /d "20" /f> nul
 reg add "HKLM\SYSTEM\CurrentControlSet\Control" /v "WaitToKillServiceTimeout" /t REG_DWORD /d "2000" /f> nul
@@ -344,34 +366,77 @@ reg add "HKCU\Control Panel\Desktop" /v "WaitToKillAppTimeout" /t REG_SZ /d "200
 reg add "HKCU\Control Panel\Desktop" /v "LowLevelHooksTimeout" /t REG_SZ /d "1000" /f> nul
 reg add "HKCU\Control Panel\Mouse" /v "MouseHoverTime" /t REG_SZ /d "400" /f> nul
 reg add "HKLM\SYSTEM\CurrentControlSet\Control" /v "WaitToKillServiceTimeout" /t REG_SZ /d "2000" /f> nul
-echo Winaero Tweaker regedit 
+
+echo Disabling Sync Provider Notifications...
 reg add HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced /v ShowSyncProviderNotifications /t REG_DWORD /d 0 /f> nul
+
+echo Disabling Rotating Lock Screen...
 reg add HKCU\Software\Microsoft\Windows\CurrentVersion\ContentDeliveryManager /v RotatingLockScreenEnabled /t REG_DWORD /d 0 /f> nul
+
+echo Disabling Rotating Lock Screen Overlay...
 reg add HKCU\Software\Microsoft\Windows\CurrentVersion\ContentDeliveryManager /v RotatingLockScreenOverlayEnabled /t REG_DWORD /d 0 /f> nul
+
+echo Disabling Subscribed Content 338387...
 reg add HKCU\Software\Microsoft\Windows\CurrentVersion\ContentDeliveryManager /v "SubscribedContent-338387Enabled" /t REG_DWORD /d 0 /f> nul
+
+echo Disabling Soft Landing...
 reg add HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager /v SoftLandingEnabled /t REG_DWORD /d 0 /f> nul
+
+echo Disabling Scoobe System Setting...
 reg add HKCU\Software\Microsoft\Windows\CurrentVersion\UserProfileEngagement /v ScoobeSystemSettingEnabled /t REG_DWORD /d 0 /f> nul
+
+echo Disabling Subscribed Content 338393...
 reg add HKCU\Software\Microsoft\Windows\CurrentVersion\ContentDeliveryManager /v "SubscribedContent-338393Enabled" /t REG_DWORD /d 0 /f> nul
+
+echo Disabling Silent Installed Apps...
 reg add HKCU\Software\Microsoft\Windows\CurrentVersion\ContentDeliveryManager /v SilentInstalledAppsEnabled /t REG_DWORD /d 0 /f> nul
+
+echo Disabling Advertising Info...
 reg add HKCU\Software\Microsoft\Windows\CurrentVersion\AdvertisingInfo /v Enabled /t REG_DWORD /d 0 /f> nul
+
+echo Disabling Tailored Experiences with Diagnostic Data...
 reg add HKCU\Software\Microsoft\Windows\CurrentVersion\Privacy /v TailoredExperiencesWithDiagnosticDataEnabled /t REG_DWORD /d 0 /f> nul
+
+echo Disabling Subscribed Content 310093...
 reg add HKCU\Software\Microsoft\Windows\CurrentVersion\ContentDeliveryManager /v "SubscribedContent-310093Enabled" /t REG_DWORD /d 0 /f> nul
+
+echo Disabling Subscribed Content 338389...
 reg add HKCU\Software\Microsoft\Windows\CurrentVersion\ContentDeliveryManager /v "SubscribedContent-338389Enabled" /t REG_DWORD /d 0 /f> nul
+
+echo Disabling Subscribed Content 314563...
 reg add HKCU\Software\Microsoft\Windows\CurrentVersion\ContentDeliveryManager /v "SubscribedContent-314563Enabled" /t REG_DWORD /d 0 /f> nul
+
+echo Enabling Periodic Backup...
 reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\Configuration Manager" /v EnablePeriodicBackup /t REG_DWORD /d 1 /f> nul
+
+echo Disabling Shortcut Arrow Icon...
 reg add HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer /v link /t REG_BINARY /d 00000000 /f> nul
+
+echo Enabling Expressive Input Shell Hotkey...
 reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Input\Settings" /v EnableExpressiveInputShellHotkey /t REG_DWORD /d 1 /f> nul
+
+echo Blocking OneDrive KFM Opt-In...
 reg add HKLM\SOFTWARE\Policies\Microsoft\OneDrive /v KFMBlockOptIn /t REG_DWORD /d 1 /f> nul
+
+echo Disabling New App Alert...
 reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\Explorer" /v NoNewAppAlert /t REG_DWORD /d 1 /f> nul
+
+echo Enabling Display Parameters...
 reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\CrashControl" /v DisplayParameters /t REG_DWORD /d 1 /f> nul
+
+echo Adding Install this update to CABFolder Shell...
 reg add "HKEY_CLASSES_ROOT\CABFolder\Shell\RunAs" /ve /d "Install this update" /f> nul
 reg add "HKEY_CLASSES_ROOT\CABFolder\Shell\RunAs" /v "HasLUAShield" /d "" /f> nul
 reg add "HKEY_CLASSES_ROOT\CABFolder\Shell\RunAs\Command" /ve /d "cmd /k dism /online /add-package /packagepath:\"%%1\"" /f> nul
+
+echo Adding Kill not responding tasks to DesktopBackground Shell...
 reg add "HKEY_CLASSES_ROOT\DesktopBackground\Shell\KillNotResponding" /ve /d "Kill not responding tasks" /f> nul
 reg add "HKEY_CLASSES_ROOT\DesktopBackground\Shell\KillNotResponding" /v "icon" /d "taskmgr.exe,-30651" /f> nul
 reg add "HKEY_CLASSES_ROOT\DesktopBackground\Shell\KillNotResponding" /v "MUIVerb" /d "Kill not responding tasks" /f> nul
 reg add "HKEY_CLASSES_ROOT\DesktopBackground\Shell\KillNotResponding" /v "Position" /d "Top" /f> nul
 reg add "HKEY_CLASSES_ROOT\DesktopBackground\Shell\KillNotResponding\command" /ve /d "cmd.exe /K taskkill.exe /F /FI \"status eq NOT RESPONDING\"" /f> nul
+
+echo Adding Personalization to CLSID...
 reg add "HKEY_CLASSES_ROOT\CLSID\{580722ff-16a7-44c1-bf74-7e1acd00f4f9}" /ve /d "@%SystemRoot%\\System32\\themecpl.dll,-1#immutable1" /f> nul
 reg add "HKEY_CLASSES_ROOT\CLSID\{580722ff-16a7-44c1-bf74-7e1acd00f4f9}" /v "InfoTip" /d "@%SystemRoot%\\System32\\themecpl.dll,-2#immutable1" /f> nul
 reg add "HKEY_CLASSES_ROOT\CLSID\{580722ff-16a7-44c1-bf74-7e1acd00f4f9}" /v "System.ApplicationName" /d "Microsoft.Personalization" /f> nul
@@ -380,68 +445,119 @@ reg add "HKEY_CLASSES_ROOT\CLSID\{580722ff-16a7-44c1-bf74-7e1acd00f4f9}" /v "Sys
 reg add "HKEY_CLASSES_ROOT\CLSID\{580722ff-16a7-44c1-bf74-7e1acd00f4f9}\DefaultIcon" /ve /d "%SystemRoot%\\System32\\themecpl.dll,-1" /f> nul
 reg add "HKEY_CLASSES_ROOT\CLSID\{580722ff-16a7-44c1-bf74-7e1acd00f4f9}\Shell\Open\command" /ve /d "explorer shell:::{ED834ED6-4B5A-4bfe-8F11-A626DCB6A921}" /f> nul
 reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\ControlPanel\NameSpace\{580722ff-16a7-44c1-bf74-7e1acd00f4f9}" /ve /d "Personalization" /f> nul
+
+echo Adding Windows Update to CLSID...
+reg add "HKEY_CLASSES_ROOT\CLSID\{36eef7db-88ad-4e81-ad49-0e313f0c35f8}" /v "System.Software.TasksFileUrl" /t REG_SZ /d "Internal" /f> nul
+reg add "HKEY_CLASSES_ROOT\CLSID\{36eef7db-88ad-4e81-ad49-0e313f0c35f8}" /v "System.ApplicationName" /t REG_SZ /d "Microsoft.WindowsUpdate" /f> nul
+reg add "HKEY_CLASSES_ROOT\CLSID\{36eef7db-88ad-4e81-ad49-0e313f0c35f8}" /v "System.ControlPanel.Category" /t REG_SZ /d "5" /f> nul
 reg add "HKEY_CLASSES_ROOT\CLSID\{36eef7db-88ad-4e81-ad49-0e313f0c35f8}" /ve /d "@%SystemRoot%\\system32\\shell32.dll,-22068" /f> nul
-reg add "HKEY_CLASSES_ROOT\CLSID\{36eef7db-88ad-4e81-ad49-0e313f0c35f8}" /v "InfoTip" /d "@%SystemRoot%\\system32\\shell32.dll,-22580" /f> nul
-reg add "HKEY_CLASSES_ROOT\CLSID\{36eef7db-88ad-4e81-ad49-0e313f0c35f8}" /v "System.ApplicationName" /d "Microsoft.WindowsUpdate" /f> nul
-reg add "HKEY_CLASSES_ROOT\CLSID\{36eef7db-88ad-4e81-ad49-0e313f0c35f8}" /v "System.ControlPanel.Category" /t REG_DWORD /d 5 /f> nul
-reg add "HKEY_CLASSES_ROOT\CLSID\{36eef7db-88ad-4e81-ad49-0e313f0c35f8}" /v "System.Software.TasksFileUrl" /d "Internal" /f> nul
+reg add "HKEY_CLASSES_ROOT\CLSID\{36eef7db-88ad-4e81-ad49-0e313f0c35f8}" /v "InfoTip" /t REG_SZ /d "@%SystemRoot%\\system32\\shell32.dll,-22580" /f> nul
 reg add "HKEY_CLASSES_ROOT\CLSID\{36eef7db-88ad-4e81-ad49-0e313f0c35f8}\DefaultIcon" /ve /d "shell32.dll,-47" /f> nul
-reg add "HKEY_CLASSES_ROOT\CLSID\{36eef7db-88ad-4e81-ad49-0e313f0c35f8}\Shell\Open\command" /ve /t REG_EXPAND_SZ /d "cmd.exe /C start /MIN /D "%SystemRoot%\system32" /high wscript.exe /E:JScript"> nul
+reg add "HKEY_CLASSES_ROOT\CLSID\{36eef7db-88ad-4e81-ad49-0e313f0c35f8}\Shell\Open\Command" /ve /t REG_EXPAND_SZ /d "control.exe /name Microsoft.WindowsUpdate" /f> nul
+reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\ControlPanel\NameSpace\{36eef7db-88ad-4e81-ad49-0e313f0c35f8}" /ve /d "Windows Update" /f> nul
+
+echo Disabling Shortcut Arrow Icon for Current User...
 reg add "HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer" /v link /t REG_BINARY /d 00000000 /f> nul
+
+echo Disabling Shortcut Arrow Icon for Default User...
 reg add "HKEY_USERS\.DEFAULT\Software\Microsoft\Windows\CurrentVersion\Explorer" /v link /t REG_BINARY /d 00000000 /f> nul
-echo More Tweaks
+
+echo Disabling Tailored Experiences with Diagnostic Data for Current User...
 reg add "HKEY_CURRENT_USER\SOFTWARE\Policies\Microsoft\Windows\CloudContent" /v "DisableTailoredExperiencesWithDiagnosticData" /t REG_DWORD /d 1 /f> nul
+
+echo Disabling Tailored Experiences with Diagnostic Data for Default User...
 reg add "HKEY_USERS\.DEFAULT\Software\Policies\Microsoft\Windows\CloudContent" /v "DisableTailoredExperiencesWithDiagnosticData" /t REG_DWORD /d 1 /f> nul
+
+echo Enabling Long Paths...
 reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\FileSystem" /v "LongPathsEnabled" /t REG_DWORD /d 1 /f> nul
+
+echo Configuring Driver Search Order...
 reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\DriverSearching" /v "SearchOrderConfig" /t REG_DWORD /d 1 /f> nul
+
+echo Setting System Responsiveness...
 reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Multimedia\SystemProfile" /v "SystemResponsiveness" /t REG_DWORD /d 0 /f> nul
+
+echo Disabling Network Throttling...
 reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Multimedia\SystemProfile" /v "NetworkThrottlingIndex" /t REG_DWORD /d 4294967295 /f> nul
+
+echo Disabling Clear Page File at Shutdown...
 reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management" /v "ClearPageFileAtShutdown" /t REG_DWORD /d 0 /f> nul
+
+echo Setting NDU Service Start to Automatic...
 reg add "HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Services\Ndu" /v "Start" /t REG_DWORD /d 2 /f> nul
+
+echo Setting IRPStackSize...
 reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\LanmanServer\Parameters" /v "IRPStackSize" /t REG_DWORD /d 30 /f> nul
+
+echo Disabling Windows Feeds for Current User...
 reg add "HKEY_CURRENT_USER\SOFTWARE\Policies\Microsoft\Windows\Windows Feeds" /v "EnableFeeds" /t REG_DWORD /d 0 /f> nul
+
+echo Setting Shell Feeds Taskbar View Mode for Current User...
 reg add "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Feeds" /v "ShellFeedsTaskbarViewMode" /t REG_DWORD /d 2 /f> nul
+
+echo Hiding Meet Now for Current User...
 reg add "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" /v "HideSCAMeetNow" /t REG_DWORD /d 1 /f> nul
+
+echo Disabling Windows Feeds for Default User...
 reg add "HKEY_USERS\.DEFAULT\Software\Policies\Microsoft\Windows\Windows Feeds" /v "EnableFeeds" /t REG_DWORD /d 0 /f> nul
+
+echo Setting Shell Feeds Taskbar View Mode for Default User...
 reg add "HKEY_USERS\.DEFAULT\Software\Microsoft\Windows\CurrentVersion\Feeds" /v "ShellFeedsTaskbarViewMode" /t REG_DWORD /d 2 /f> nul
+
+echo Hiding Meet Now for Default User...
 reg add "HKEY_USERS\.DEFAULT\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" /v "HideSCAMeetNow" /t REG_DWORD /d 1 /f> nul
+
+echo Setting GPU Priority for Games...
 reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Multimedia\SystemProfile\Tasks\Games" /v "GPU Priority" /t REG_DWORD /d 8 /f> nul
+
+echo Setting Priority for Games...
 reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Multimedia\SystemProfile\Tasks\Games" /v "Priority" /t REG_DWORD /d 6 /f> nul
+
+echo Setting Scheduling Category for Games...
 reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Multimedia\SystemProfile\Tasks\Games" /v "Scheduling Category" /t REG_SZ /d "High" /f> nul
+
 echo Disabling sound for Sticky Keys, Toggle Keys, and Filter Keys
 reg add "HKCU\Control Panel\Accessibility\StickyKeys" /v "SOUND" /t REG_SZ /d "" /f> nul
 reg add "HKCU\Control Panel\Accessibility\ToggleKeys" /v "SOUND" /t REG_SZ /d "" /f> nul
 reg add "HKCU\Control Panel\Accessibility\Keyboard Response" /v "SOUND" /t REG_SZ /d "" /f> nul
+
 echo Disabling warning messages for Sticky Keys, Toggle Keys, and Filter Keys
 reg add "HKCU\Control Panel\Accessibility\StickyKeys" /v "Warning" /t REG_SZ /d "0" /f> nul
 reg add "HKCU\Control Panel\Accessibility\ToggleKeys" /v "Warning" /t REG_SZ /d "0" /f> nul
 reg add "HKCU\Control Panel\Accessibility\Keyboard Response" /v "Warning" /t REG_SZ /d "0" /f> nul
+
 echo Disabling mouse acceleration
 reg add "HKCU\Control Panel\Mouse" /v "MouseSpeed" /t REG_SZ /d "0" /f> nul
 reg add "HKCU\Control Panel\Mouse" /v "MouseThreshold1" /t REG_SZ /d "0" /f> nul
 reg add "HKCU\Control Panel\Mouse" /v "MouseThreshold2" /t REG_SZ /d "0" /f> nul
+
 echo Enabling pointer shadow
 reg add "HKCU\Control Panel\Mouse" /v "MouseShadow" /t REG_DWORD /d "1" /f> nul
+
 echo Disabling showing frequently used folders in Quick Access
 reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer" /v "ShowFrequent" /t REG_DWORD /d "0" /f> nul
+
 echo Showing hidden files in File Explorer
 reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /v "Hidden" /t REG_DWORD /d "1" /f> nul
+
 echo Showing file extensions for unknown file types
 reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /v "HideFileExt" /t REG_DWORD /d "0" /f> nul
-echo Seting Windows Explorer to launch folders in a separate process
+
+echo Setting Windows Explorer to launch folders in a separate process
 reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /v "SeparateProcess" /t REG_DWORD /d "1" /f> nul
+
 echo Enabling check boxes for file and folder selection in File Explorer
 reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /v "CheckFileExtensions" /t REG_DWORD /d "1" /f> nul
 reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /v "AutoCheckSelect" /t REG_DWORD /d "1" /f> nul
+
 echo Showing all folders and libraries in File Explorer
 reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /v "NavPaneShowAllFolders" /t REG_DWORD /d "1" /f> nul
 reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /v "NavPaneShowLibraries" /t REG_DWORD /d "1" /f> nul
-echo Seting indexing options to index the entire C: drive
-reg add "HKLM\SOFTWARE\Microsoft\Windows Search\CrawlScopeManager\Windows\SystemIndex\DefaultRules" /v "{0}" /t REG_SZ /d "{1}" /f> nul
-reg add "HKLM\SOFTWARE\Microsoft\Windows Search\CrawlScopeManager\Windows\SystemIndex\DefaultRules" /v "{1}" /t REG_DWORD /d 1 /f> nul
-echo more tweaks
-reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\UserProfileEngagement" /v "ScoobeSystemSettingEnabled" /t REG_DWORD /d 0 /f> nul
-reg add "HKCU\Software\Classes\CLSID\{031E4825-7B94-4dc3-B131-E946B44C8DD5}" /v "System.IsPinnedToNameSpaceTree" /t REG_DWORD /d 1 /f> nul
+
+echo Setting indexing options to index the entire C: drive
+reg add "HKLM\SOFTWARE\Microsoft\Windows Search\CrawlScopeManager\Windows\SystemIndex\DefaultRules" /v "0" /t REG_SZ /d "C:\" /f> nul
+reg add "HKLM\SOFTWARE\Microsoft\Windows Search\CrawlScopeManager\Windows\SystemIndex\DefaultRules" /v "1" /t REG_DWORD /d 1 /f> nul
+
 echo Tweaking Desktop Icons
 reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /v HideIcons /t REG_DWORD /d 0 /f> nul
 reg add "HKCU\Software\Microsoft\Windows\Shell\Bags\1\Desktop" /v "AutoArrange" /t REG_SZ /d "1" /f> nul
@@ -454,26 +570,32 @@ reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\HideDesktopIcon
 reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\HideDesktopIcons\ClassicStartMenu" /v {F02C1A0D-BE21-4350-88B0-7367FC96EF3C} /t REG_DWORD /d 0 /f> nul
 reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\HideDesktopIcons\NewStartPanel" /v {5399E694-6CE5-4D6C-8FCE-1D8870FDCBA0} /t REG_DWORD /d 0 /f> nul
 reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\HideDesktopIcons\ClassicStartMenu" /v {5399E694-6CE5-4D6C-8FCE-1D8870FDCBA0} /t REG_DWORD /d 0 /f> nul
-echo seting dark mode
+
+echo Setting dark mode
 reg add HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize /v AppsUseLightTheme /t REG_DWORD /d 0 /f> nul
 reg add HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize /v SystemUsesLightTheme /t REG_DWORD /d 0 /f> nul
-echo tweaks releated to windows 11
-echo enabling end task in taskbar
+
+echo Enabling end task in taskbar
 reg add  "HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced\TaskbarDeveloperSettings" /v "TaskbarEndTask" /t REG_DWORD /d 1 /f> nul
-echo disabling news
+
+echo Disabling news
 reg add "HKLM\SOFTWARE\Policies\Microsoft\Dsh" /v "AllowNewsAndInterests" /t REG_DWORD /d "0" /f> nul
-echo disabling Windows Copilot
+
+echo Disabling Windows Copilot
 reg add "HKEY_CURRENT_USER\Software\Policies\Microsoft\Windows\WindowsCopilot" /v TurnOffWindowsCopilot /t REG_DWORD /d 1 /f> nul
 reg add "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /v ShowCopilotButton /t REG_DWORD /d 00000000 /f> nul
 reg add "HKEY_USERS\.DEFAULT\Software\Policies\Microsoft\Windows\WindowsCopilot" /v TurnOffWindowsCopilot /t REG_DWORD /d 1 /f> nul
 reg add "HKEY_USERS\.DEFAULT\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /v ShowCopilotButton /t REG_DWORD /d 00000000 /f> nul
-echo making taskbar at left as windows 10 as it should be
+
+echo Setting taskbar to left as in Windows 10
 reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /v TaskbarAl /t REG_DWORD /d 0 /f> nul
-echo making old right click menus default as windows 10 as it should be
+
+echo Setting old right-click menus as default in Windows 10
 reg add "HKCU\Software\Classes\CLSID\{86ca1aa0-34aa-4e8b-a509-50c905bae2a2}\InprocServer32" /ve /d "" /f> nul
 reg add "HKEY_CURRENT_USER\Software\Classes\CLSID\{86ca1aa0-34aa-4e8b-a509-50c905bae2a2}\InprocServer32" /ve /d "" /f> nul
 reg add "HKEY_USERS\.DEFAULT\Software\Classes\CLSID\{86ca1aa0-34aa-4e8b-a509-50c905bae2a2}\InprocServer32" /ve /d "" /f> nul
-echo THIO joe gpt
+
+echo Disabling Windows Consumer Features
 reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\PolicyManager\default\Experience\AllowWindowsConsumerFeatures" /v "value" /t REG_DWORD /d 0 /f> nul
 reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\CloudContent" /v "DisableWindowsTips" /t REG_DWORD /d 1 /f> nul
 reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\DataCollection" /v "DoNotShowFeedbackNotifications" /t REG_DWORD /d 1 /f> nul
@@ -486,9 +608,17 @@ reg add "HKEY_USERS\.DEFAULT\Software\Microsoft\Windows\CurrentVersion\ContentDe
 reg add "HKEY_USERS\.DEFAULT\Software\Microsoft\Windows\CurrentVersion\ContentDeliveryManager" /v "SubscribedContent-338389Enabled" /t REG_DWORD /d 0 /f> nul
 reg add "HKEY_USERS\.DEFAULT\Software\Microsoft\Windows\CurrentVersion\ContentDeliveryManager" /v "SubscribedContent-353694Enabled" /t REG_DWORD /d 0 /f> nul
 reg add "HKEY_USERS\.DEFAULT\Software\Microsoft\Windows\CurrentVersion\ContentDeliveryManager" /v "SubscribedContent-353696Enabled" /t REG_DWORD /d 0 /f> nul
+
+echo Disabling lock screen
 reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\Personalization" /v "NoLockScreen" /t REG_DWORD /d 1 /f> nul
+
+echo Disabling telemetry
 reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\DataCollection" /v "AllowTelemetry" /t REG_DWORD /d 0 /f> nul
+
+echo Disabling advertising ID
 reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\AdvertisingInfo" /v "DisabledByGroupPolicy" /t REG_DWORD /d 1 /f> nul
+
+echo Disabling scheduled tasks related to customer experience and feedback
 schtasks /Change /TN "Microsoft\Windows\Autochk\Proxy" /Disable> nul
 schtasks /Change /TN "Microsoft\Windows\Customer Experience Improvement Program\Consolidator" /Disable> nul
 schtasks /Change /TN "Microsoft\Windows\Customer Experience Improvement Program\UsbCeip" /Disable> nul
@@ -496,8 +626,11 @@ schtasks /Change /TN "Microsoft\Windows\DiskDiagnostic\Microsoft-Windows-DiskDia
 schtasks /Change /TN "Microsoft\Windows\Feedback\Siuf\DmClient" /Disable> nul
 schtasks /Change /TN "Microsoft\Windows\Feedback\Siuf\DmClientOnScenarioDownload" /Disable> nul
 schtasks /Change /TN "Microsoft\Windows\Windows Error Reporting\QueueReporting" /Disable> nul
+
+echo Stopping and disabling Diagnostic Tracking Service
 sc stop DiagTrack> nul
 sc config "DiagTrack" start=disabled> nul
+
 pause
 goto optmizewindows
 :installapps2
