@@ -886,7 +886,7 @@ echo 0. Go Back
 set choice=
 set /p choice=Type the number.
 if not '%choice%'=='' set choice=%choice:~0,100%
-if '%choice%'=='1' powershell -command "irm https://massgrave.dev/get | iex"
+if '%choice%'=='1' powershell -command "irm https://get.activated.win | iex"
 if '%choice%'=='0' goto start
 echo "%choice%" is not valid, try again
 echo.
