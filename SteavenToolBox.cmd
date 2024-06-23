@@ -52,13 +52,17 @@ goto start
 
 :uninstall
 cls
-echo ---------------------------------------------------------------------------------------------------------------------                                    
-echo 1. Uninstall Edge
-echo 2. Uninstall Edge FULLY (cant reinstall edge after that)
-echo 3. Uninstall OneDrive
-echo 4. Uninstall Microsoft Teams
-echo 5. Uninstall Windows Media Player (Legacay)
-echo 6. Uninstall Cortana
+echo ---------------------------------------------------------------------------------------------------------------------          
+echo Some pepole say removing edge midget break windows
+echo so to be safe just dont remove it                          
+echo to reinstall edge, open uninstall edge stage 2 and then wait for it to try to uninstall then it will open powershell window, type edge then edge will be reinstalled
+echo 1. Uninstall Edge stage 1
+echo 2. Uninstall Edge stage 2
+echo 3. Uninstall Edge stage 3
+echo 4. Uninstall OneDrive
+echo 5. Uninstall Microsoft Teams
+echo 6. Uninstall Windows Media Player (Legacay)
+echo 7. Uninstall Cortana
 echo 0. Go back
 echo ---------------------------------------------------------------------------------------------------------------------
 set choice=
@@ -66,10 +70,11 @@ set /p choice=Type the number.
 if not '%choice%'=='' set choice=%choice:~0,100%
 if '%choice%'=='1' powershell -command "Invoke-WebRequest https://github.com/SteavenToolBox/Windows/raw/main/Scripts/edge-uninstaller.cmd -OutFile C:\windows\temp\edge-uninstaller.cmd" && powershell.exe -command "C:\windows\temp\edge-uninstaller.cmd"
 if '%choice%'=='2' powershell -command "Invoke-WebRequest https://github.com/SteavenToolBox/Windows/raw/main/Scripts/edge-uninstaller-cant.cmd -OutFile C:\windows\temp\edge-uninstaller-cant.cmd" && powershell.exe -command "C:\windows\temp\edge-uninstaller-cant.cmd"
-if '%choice%'=='3' powershell -command "Invoke-WebRequest https://github.com/SteavenToolBox/Windows/raw/main/Scripts/onedrive-uninstaller.cmd -OutFile C:\windows\temp\onedrive-uninstaller.cmd" && powershell.exe -command "C:\windows\temp\onedrive-uninstaller.cmd"
-if '%choice%'=='4' powershell -command "Invoke-WebRequest https://github.com/SteavenToolBox/Windows/raw/main/Scripts/teams-uninstaller.cmd -OutFile C:\windows\temp\teams-uninstaller.cmd" && powershell.exe -command "C:\windows\temp\teams-uninstaller.cmd"
-if '%choice%'=='5' powershell -command "Invoke-WebRequest https://github.com/SteavenToolBox/Windows/raw/main/Scripts/windows-media-player-legacay-uninstaller.cmd -OutFile C:\windows\temp\windows-media-player-legacay-uninstaller.cmd" && powershell.exe -command "C:\windows\temp\windows-media-player-legacay-uninstaller.cmd"
-if '%choice%'=='6' powershell -command "Invoke-WebRequest https://github.com/SteavenToolBox/Windows/raw/main/Scripts/cortana-uninstaller.cmd -OutFile C:\windows\temp\cortana-uninstaller.cmd" && powershell.exe -command "C:\windows\temp\cortana-uninstaller.cmd"
+if '%choice%'=='3' powershell -command "Invoke-WebRequest https://github.com/SteavenToolBox/Windows/raw/main/Scripts/edge-uninstaller2.cmd -OutFile C:\windows\temp\edge-uninstaller2.cmd" && powershell.exe -command "C:\windows\temp\edge-uninstaller2.cmd"
+if '%choice%'=='4' powershell -command "Invoke-WebRequest https://github.com/SteavenToolBox/Windows/raw/main/Scripts/onedrive-uninstaller.cmd -OutFile C:\windows\temp\onedrive-uninstaller.cmd" && powershell.exe -command "C:\windows\temp\onedrive-uninstaller.cmd"
+if '%choice%'=='5' powershell -command "Invoke-WebRequest https://github.com/SteavenToolBox/Windows/raw/main/Scripts/teams-uninstaller.cmd -OutFile C:\windows\temp\teams-uninstaller.cmd" && powershell.exe -command "C:\windows\temp\teams-uninstaller.cmd"
+if '%choice%'=='6' powershell -command "Invoke-WebRequest https://github.com/SteavenToolBox/Windows/raw/main/Scripts/windows-media-player-legacay-uninstaller.cmd -OutFile C:\windows\temp\windows-media-player-legacay-uninstaller.cmd" && powershell.exe -command "C:\windows\temp\windows-media-player-legacay-uninstaller.cmd"
+if '%choice%'=='7' powershell -command "Invoke-WebRequest https://github.com/SteavenToolBox/Windows/raw/main/Scripts/cortana-uninstaller.cmd -OutFile C:\windows\temp\cortana-uninstaller.cmd" && powershell.exe -command "C:\windows\temp\cortana-uninstaller.cmd"
 if '%choice%'=='0' goto start
 echo "%choice%" is not valid, try again
 echo.
