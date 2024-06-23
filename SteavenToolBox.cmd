@@ -40,7 +40,7 @@ set /p choice=Type the number.
 if not '%choice%'=='' set choice=%choice:~0,100%
 if '%choice%'=='1' goto optmizewindows
 if '%choice%'=='2' topgrade && goto start
-if '%choice%'=='3' goto installapps
+if '%choice%'=='3' goto installapps2
 if '%choice%'=='4' goto updatefix
 if '%choice%'=='5' goto crack
 if '%choice%'=='6' goto uninstall
@@ -458,7 +458,7 @@ sc stop DiagTrack> nul
 sc config "DiagTrack" start=disabled> nul
 pause
 goto optmizewindows
-:installapps
+:installapps2
 cls
 color b
 echo ---------------------------------------------------------------------------------------------------------------------
@@ -526,7 +526,7 @@ if '%choice%'=='28' winget install -e --id martinrotter.RSSGuard
 if '%choice%'=='0' goto start
 echo "%choice%" is not valid, try again
 echo.
-goto installapps
+goto installapps2
 :gamesprograms
 cls
 color b
@@ -574,10 +574,10 @@ if '%choice%'=='16' choco install cemu -y
 if '%choice%'=='17' choco install ryujinx -y
 if '%choice%'=='18' choco install retroarch -y
 if '%choice%'=='19' choco install emulationstation.install -y
-if '%choice%'=='0' goto installapps
+if '%choice%'=='0' goto installapps2
 echo "%choice%" is not valid, try again
 echo.
-goto installapps
+goto installapps2
 :chatprograms
 cls
 color b
@@ -595,10 +595,10 @@ if '%choice%'=='1' winget install -e --id Discord.Discord
 if '%choice%'=='2' winget install -e --id Element.Element
 if '%choice%'=='3' winget install -e --id Telegram.TelegramDesktop
 if '%choice%'=='4' winget install -e --id 9NKSQGP7F2NH
-if '%choice%'=='0' goto installapps
+if '%choice%'=='0' goto installapps2
 echo "%choice%" is not valid, try again
 echo.
-goto installapps
+goto installapps2
 :mediaprogrames
 cls
 color b
@@ -616,10 +616,10 @@ if '%choice%'=='1' winget install -e --id VideoLAN.VLC
 if '%choice%'=='2' choco install mpv.install -y
 if '%choice%'=='3' winget install -e --id Audacious.MediaPlayer
 if '%choice%'=='4' winget install -e --id CodecGuide.K-LiteCodecPack.Mega
-if '%choice%'=='0' goto installapps
+if '%choice%'=='0' goto installapps2
 echo "%choice%" is not valid, try again
 echo.
-goto installapps
+goto installapps2
 :zipprogrames
 cls
 color b
@@ -635,10 +635,10 @@ if not '%choice%'=='' set choice=%choice:~0,100%
 if '%choice%'=='1' winget install -e --id M2Team.NanaZip
 if '%choice%'=='2' winget install -e --id 7zip.7zip
 if '%choice%'=='3' winget install -e --id RARLab.WinRAR
-if '%choice%'=='0' goto installapps
+if '%choice%'=='0' goto installapps2
 echo "%choice%" is not valid, try again
 echo.
-goto installapps
+goto installapps2
 :browsers
 cls
 color b
@@ -660,10 +660,10 @@ if '%choice%'=='3' winget install -e --id BraveSoftware.BraveBrowser
 if '%choice%'=='4' winget install -e --id eloston.ungoogled-chromium
 if '%choice%'=='5' winget install -e --id Microsoft.Edge
 if '%choice%'=='6' winget install -e --id EDRLab.Thorium
-if '%choice%'=='0' goto installapps
+if '%choice%'=='0' goto installapps2
 echo "%choice%" is not valid, try again
 echo.
-goto installapps
+goto installapps2
 :updatefix
 cls
 color 9
