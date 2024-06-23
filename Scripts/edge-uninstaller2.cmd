@@ -1,3 +1,5 @@
+cls
+
 taskkill /f /im msedge.exe
 
 takeown /f "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Microsoft Edge.lnk" /a
