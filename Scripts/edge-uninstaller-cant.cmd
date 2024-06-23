@@ -2,11 +2,11 @@
 #:: just copy-paste into powershell - it's a standalone hybrid script
 sp 'HKCU:\Volatile Environment' 'Edge_Removal' @'
 
-$also_remove_webview = 1
+$also_remove_webview = 0
 ## why also remove webview? because it is 2 copies of edge, not a slimmed down CEF, and is driving bloated web apps
 $also_remove_widgets = 1
 ## why also remove widgets? because it is a webview glorified ad portal on msn and bing news cathering to stupid people
-$also_remove_xsocial = 1
+$also_remove_xsocial = 0
 ## why also remove xsocial? because it starts webview setup every boot - xbox gamebar will still work without the social crap
 
 $host.ui.RawUI.WindowTitle = 'Edge Removal - AveYo, 2023.09.14'
