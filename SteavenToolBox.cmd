@@ -30,7 +30,7 @@ echo 1. Optimize windows
 echo 2. Update All Installed Apps to the latest versions
 echo 3. Install Features, Programs, and Apps
 echo 4. Windows Update Fix 
-echo 5. Crack Windows and Office (Use it at your own risk!)
+echo 5. Crack Windows and Office (Use it at your own risk)
 echo 6. Uninstall Apps
 echo 7. Repair Windows
 echo 0. Go Back
@@ -838,10 +838,10 @@ color 9
 echo ---------------------------------------------------------------------------------------------------------------------
 echo 0. Go Back
 echo ---------------------------------------------------------------------------------------------------------------------
-echo 1. Get Windows 11 on unsupported devices!
+echo 1. Get Windows 11 on unsupported devices
 echo ---------------------------------------------------------------------------------------------------------------------
 echo Choose the build that you are running right now
-echo That will make you never upgrade to a newer build which means more stable PC performance!
+echo That will make you never upgrade to a newer build which means more stable PC performance
 echo 2. 22H2 (Works on Windows 11)
 echo 3. 21H2 (Works on Windows 11)
 echo 4. 21H1
@@ -853,7 +853,7 @@ echo 9. 1809
 echo 10. 1607
 echo 11. Undo
 echo ---------------------------------------------------------------------------------------------------------------------
-echo Choose If you want to get feature updates and security updates or security updates only!
+echo Choose If you want to get feature updates and security updates or security updates only
 echo Note: this won't remove the first setting
 echo 12. Security Updates only
 echo 13. Security and feature updates
