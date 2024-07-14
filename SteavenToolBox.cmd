@@ -621,6 +621,9 @@ echo Stopping and disabling Diagnostic Tracking Service
 sc stop DiagTrack> nul
 sc config "DiagTrack" start=disabled> nul
 
+echo Making Windows use utc time to fix linux dual boot
+reg add HKLM\SYSTEM\CurrentControlSet\Control\TimeZoneInformation /v RealTimeIsUniversal /t REG_DWORD /d 1
+
 pause
 goto optmizewindows
 :installapps2
