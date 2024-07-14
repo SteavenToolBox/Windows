@@ -840,15 +840,15 @@ echo 0. Go Back
 echo ---------------------------------------------------------------------------------------------------------------------
 echo 1. Get Windows 11 on unsupported devices!
 echo ---------------------------------------------------------------------------------------------------------------------
-echo Chose your build that you are in right now
-echo That will make you never upgrade to newer build that mean stable pc stable performace!
+echo Choose the build that you are running right now
+echo That will make you never upgrade to a newer build, which means more stable pc performace!
 echo 2. 22H2 (Works on Windows 11)
-echo 3. 21h2 (Works on Windows 11)
-echo 4. 21h1
-echo 5. 20h2 (2009)
-echo 6. 20h1 (2004)
-echo 7. 19h2 (1909)
-echo 8. 19h1 (1903)
+echo 3. 21H2 (Works on Windows 11)
+echo 4. 21H1
+echo 5. 20H2 (2009)
+echo 6. 20H1 (2004)
+echo 7. 19H2 (1909)
+echo 8. 19H1 (1903)
 echo 9. 1809
 echo 10. 1607
 echo 11. Undo
@@ -856,7 +856,7 @@ echo ---------------------------------------------------------------------------
 echo Choose If you want to not get feature updates and security updates or security updates only!
 echo Note: this won't remove the first setting
 echo 12. Security Updates only
-echo 13. Security and non
+echo 13. Security and feature updates
 echo ---------------------------------------------------------------------------------------------------------------------
 set choice=
 set /p choice=Type the number. 
