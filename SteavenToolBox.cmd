@@ -11,7 +11,7 @@ echo 1. Install Runtime
 echo 2. Start Toolbox
 echo ---------------------------------------------------------------------------------------------------------------------
 set choice=
-set /p choice=Type the number.
+set /p choice=Type the number. 
 if not '%choice%'=='' set choice=%choice:~0,100%
 if '%choice%'=='1' powershell.exe "iex ((New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/SteavenToolBox/Windows/main/Scripts/runtime.ps1'))"
 if '%choice%'=='2' goto start
@@ -23,22 +23,22 @@ title SteavenToolbox
 cls
 color b
 echo =======================================================================
-echo "SteavenToolbox | We care about your pc!" "Windows 10 and Windows 11!"
+echo "SteavenToolbox | We care about your PC!" "Windows 10 and Windows 11!"
 echo =======================================================================
 echo ---------------------------------------------------------------------------------------------------------------------                                    
-echo 1. Optmize windows
-echo 2. Update All Installed Apps To Thair Lastest Versions
-echo 3. Install Features, Programs and Apps
+echo 1. Optimize windows
+echo 2. Update All Installed Apps to the latest versions
+echo 3. Install Features, Programs, and Apps
 echo 4. Windows Update Fix 
-echo 5. Crack Windows and Office (Use it at your own Risk)
+echo 5. Crack Windows and Office (Use it at your own risk)
 echo 6. Uninstall Apps
 echo 7. Repair Windows
 echo 0. Go Back
 echo ---------------------------------------------------------------------------------------------------------------------
 set choice=
-set /p choice=Type the number.
+set /p choice=Type the number. 
 if not '%choice%'=='' set choice=%choice:~0,100%
-if '%choice%'=='1' goto optmizewindows
+if '%choice%'=='1' goto optimizewindows
 if '%choice%'=='2' topgrade && goto start
 if '%choice%'=='3' goto installapps2
 if '%choice%'=='4' goto updatefix
@@ -53,20 +53,20 @@ goto start
 :uninstall
 cls
 echo ---------------------------------------------------------------------------------------------------------------------          
-echo Some pepole say removing edge midget break windows
-echo so to be safe just dont remove it                          
-echo to reinstall edge, open uninstall edge stage 2 and then wait for it to try to uninstall then it will open powershell window, type edge then edge will be reinstalled
-echo 1. Uninstall Edge stage 1
-echo 2. Uninstall Edge stage 2
-echo 3. Uninstall Edge stage 3
-echo 4. Uninstall OneDrive
+echo Some people say removing Edge might break Windows.
+echo So to be safe, just don't remove it.                          
+echo To reinstall Edge, open uninstall Edge stage 2 and then wait for it to try to uninstall. Then it will open a PowerShell window. Type Edge and Edge will be reinstalled.
+echo 1. Uninstall Edge - Stage 1
+echo 2. Uninstall Edge - Stage 2
+echo 3. Uninstall Edge - Stage 3
+echo 4. Uninstall Microsoft OneDrive
 echo 5. Uninstall Microsoft Teams
-echo 6. Uninstall Windows Media Player (Legacay)
+echo 6. Uninstall Windows Media Player (Legacy)
 echo 7. Uninstall Cortana
 echo 0. Go back
 echo ---------------------------------------------------------------------------------------------------------------------
 set choice=
-set /p choice=Type the number.
+set /p choice=Type the number. 
 if not '%choice%'=='' set choice=%choice:~0,100%
 if '%choice%'=='1' powershell -command "Invoke-WebRequest https://github.com/SteavenToolBox/Windows/raw/main/Scripts/edge-uninstaller.cmd -OutFile C:\windows\temp\edge-uninstaller.cmd" && powershell.exe -command "C:\windows\temp\edge-uninstaller.cmd"
 if '%choice%'=='2' powershell -command "Invoke-WebRequest https://github.com/SteavenToolBox/Windows/raw/main/Scripts/edge-uninstaller-cant.cmd -OutFile C:\windows\temp\edge-uninstaller-cant.cmd" && powershell.exe -command "C:\windows\temp\edge-uninstaller-cant.cmd"
@@ -79,46 +79,46 @@ if '%choice%'=='0' goto start
 echo "%choice%" is not valid, try again
 echo.
 goto start
-:optmizewindows
+:optimizewindows
 cls
 color b
 echo ---------------------------------------------------------------------------------------------------------------------
 echo Desktop Vs Laptop vs 3
-echo Laptop have Power Thrttling enabled while Desktop have it disabled 
-echo Laptop Have automatic Maps updates enabled
-echo Laptop Have Maps while Desktop have it Uninstalled 
-echo 3 Bascily dont have any of this
-echo Optmize Windows
+echo Laptops have power throttling enabled; while desktop computers have it disabled. 
+echo Laptops have automatic Maps updates enabled
+echo Laptops Have Maps while desktops have it uninstalled.
+echo 3 Basically don't have any of this
+echo Optimize Windows
 echo 1. Desktop
 echo 2. Laptop
-echo 3. Without Laptop OR Desktop spifice Tweaks
-echo 4. Uninstall appx Blot
-echo 5. Uninstall legecy Blot
-echo 6. Tweak Optinal Features
-echo 7. Chris Titus Tech Optmize Windows (Recommaded)
+echo 3. Without Laptop OR Desktop specific Tweaks
+echo 4. Uninstall appx Bloat
+echo 5. Uninstall legacy Bloat
+echo 6. Tweak Optional Features
+echo 7. Chris Titus Tech Optimize Windows (Recommended)
 echo 0. Go back
 echo ---------------------------------------------------------------------------------------------------------------------
 set choice=
-set /p choice=Type the number.
+set /p choice=Type the number. 
 if not '%choice%'=='' set choice=%choice:~0,100%
-if '%choice%'=='1' goto optmizedesktop
-if '%choice%'=='2' goto optmizelaptop
-if '%choice%'=='3' cls && goto optmize && goto optmizewindows
+if '%choice%'=='1' goto optimizedesktop
+if '%choice%'=='2' goto optimizelaptop
+if '%choice%'=='3' cls && goto optimize && goto optimizewindows
 if '%choice%'=='4' goto appxdebloat
-if '%choice%'=='5' goto legecyblot
-if '%choice%'=='6' goto optionalfaetures
+if '%choice%'=='5' goto legacybloat
+if '%choice%'=='6' goto optionalfeatures
 if '%choice%'=='7' powershell -command "irm christitus.com/win | iex"
 if '%choice%'=='0' goto start
 echo "%choice%" is not valid, try again
 echo.
-goto optmizewindows
-:legecyblot
+goto optimizewindows
+:legacybloat
 cls
 echo Uninstalling Snipping Tool
 "C:\Windows\System32\SnippingTool.exe" /uninstall> nul
 pause
-goto optmizewindows
-:optionalfaetures
+goto optimizewindows
+:optionalfeatures
 cls
 powershell -command "Disable-WindowsOptionalFeature -Online -FeatureName Printing-XPSServices-Features -NoRestart"
 powershell -command "Disable-WindowsOptionalFeature -Online -FeatureName MicrosoftWindowsPowerShellV2 -NoRestart"
@@ -128,7 +128,7 @@ powershell -command "Enable-WindowsOptionalFeature -Online -FeatureName LegacyCo
 powershell -command "Enable-WindowsOptionalFeature -Online -FeatureName NetFx3 -NoRestart"
 powershell -command "Enable-WindowsOptionalFeature -Online -FeatureName NetFx3 -NoRestart"
 pause
-goto optmizewindows
+goto optimizewindows
 :appxdebloat
 cls
 echo Uninstalling People
@@ -214,8 +214,8 @@ powershell -command "Get-AppxPackage Microsoft.PowerAutomate* | Remove-AppxPacka
 echo Uninstalling Windows Copilot
 powershell -command "Get-AppxPackage *Windows.Ai.Copilot.Provider* | Remove-AppxPackage"
 pause
-goto optmizewindows
-:optmizedesktop
+goto optimizewindows
+:optimizedesktop
 cls
 echo Disabling Power Thrttling
 reg add "HKLM\SYSTEM\CurrentControlSet\Control\Power\PowerThrottling" /v "PowerThrottlingOff" /t REG_DWORD /d "0" /f> nul
@@ -224,8 +224,8 @@ reg add "HKLM\SYSTEM\Maps" /v "AutoUpdateEnabled" /t REG_DWORD /d "0" /f> nul
 schtasks /Change /TN "Microsoft\Windows\Maps\MapsUpdateTask" /Disable> nul
 echo Uninstalling Maps app
 powershell -command "Get-AppxPackage *WindowsMaps* | Remove-AppxPackage"> nul
-goto optmize
-:optmizelaptop
+goto optimize
+:optimizelaptop
 cls
 echo Enabling Power Thrttling
 reg add "HKLM\SYSTEM\CurrentControlSet\Control\Power\PowerThrottling" /v "PowerThrottlingOff" /t REG_DWORD /d "1" /f> nul
@@ -234,8 +234,8 @@ winget install --id 9WZDNCRDTBVB
 echo Enabling automatic Maps updates...
 reg add "HKLM\SYSTEM\Maps" /v "AutoUpdateEnabled" /t REG_DWORD /d "1" /f> nul
 schtasks /Change /TN "Microsoft\Windows\Maps\MapsUpdateTask" /Enable> nul
-goto optmize
-:optmize
+goto optimize
+:optimize
 echo Disabling Web Search and Cortana
 reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\Windows Search" /v "AllowCortana" /t REG_DWORD /d "0" /f> nul
 reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\Windows Search" /v "AllowCloudSearch" /t REG_DWORD /d "0" /f> nul
@@ -621,11 +621,11 @@ echo Stopping and disabling Diagnostic Tracking Service
 sc stop DiagTrack> nul
 sc config "DiagTrack" start=disabled> nul
 
-echo Making Windows use utc time to fix linux dual boot
+echo Making Windows use UTC time to fix Linux dual boot
 reg add HKLM\SYSTEM\CurrentControlSet\Control\TimeZoneInformation /v RealTimeIsUniversal /t REG_DWORD /d 1
 
 pause
-goto optmizewindows
+goto optimizewindows
 :installapps2
 cls
 color b
@@ -661,7 +661,7 @@ echo 28. Martinrotter RSSGuard
 echo 0. Go back
 echo ---------------------------------------------------------------------------------------------------------------------
 set choice=
-set /p choice=Type the number.
+set /p choice=Type the number. 
 if not '%choice%'=='' set choice=%choice:~0,100%
 if '%choice%'=='1' choco install vcredist2005 vcredist2008 vcredist2010  vcredist2012 msvisualcplusplus2012-redist vcredist2013 vcredist2017 vcredist140 vcredist-all adoptopenjdk8openj9jre adoptopenjdk11openj9jre directx netfx-4.8.1 -y & DISM /Online /Enable-Feature /FeatureName:NetFx3 & dism /Online /enable-feature /FeatureName:"LegacyComponents" /All & dism /Online /enable-feature /FeatureName:"DirectPlay" /All
 if '%choice%'=='2' goto browsers
@@ -721,7 +721,7 @@ echo 19. EmulationStation
 echo 0. Go back
 echo ---------------------------------------------------------------------------------------------------------------------
 set choice=
-set /p choice=Type the number.
+set /p choice=Type the number. 
 if not '%choice%'=='' set choice=%choice:~0,100%
 if '%choice%'=='1' winget install -e --id Valve.Steam
 if '%choice%'=='2' winget install -e --id EpicGames.EpicGamesLauncher
@@ -757,7 +757,7 @@ echo 4. Whatsapp
 echo 0. Go back
 echo ---------------------------------------------------------------------------------------------------------------------
 set choice=
-set /p choice=Type the number.
+set /p choice=Type the number. 
 if not '%choice%'=='' set choice=%choice:~0,100%
 if '%choice%'=='1' winget install -e --id Discord.Discord
 if '%choice%'=='2' winget install -e --id Element.Element
@@ -778,7 +778,7 @@ echo 4. K-Lite Codec Pack Mega
 echo 0. Go back
 echo ---------------------------------------------------------------------------------------------------------------------
 set choice=
-set /p choice=Type the number.
+set /p choice=Type the number. 
 if not '%choice%'=='' set choice=%choice:~0,100%
 if '%choice%'=='1' winget install -e --id VideoLAN.VLC
 if '%choice%'=='2' choco install mpv.install -y
@@ -798,7 +798,7 @@ echo 3. Winrar
 echo 0. Go back
 echo ---------------------------------------------------------------------------------------------------------------------
 set choice=
-set /p choice=Type the number.
+set /p choice=Type the number. 
 if not '%choice%'=='' set choice=%choice:~0,100%
 if '%choice%'=='1' winget install -e --id M2Team.NanaZip
 if '%choice%'=='2' winget install -e --id 7zip.7zip
@@ -820,7 +820,7 @@ echo 6. Thorium
 echo 0. Go back
 echo ---------------------------------------------------------------------------------------------------------------------
 set choice=
-set /p choice=Type the number.
+set /p choice=Type the number. 
 if not '%choice%'=='' set choice=%choice:~0,100%
 if '%choice%'=='1' winget install -e --id Mozilla.Firefox
 if '%choice%'=='2' winget install -e --id Google.Chrome
@@ -838,28 +838,28 @@ color 9
 echo ---------------------------------------------------------------------------------------------------------------------
 echo 0. Go Back
 echo ---------------------------------------------------------------------------------------------------------------------
-echo 1. Get Windows 11 on unsupported devices!
+echo 1. Get Windows 11 on unsupported devices
 echo ---------------------------------------------------------------------------------------------------------------------
-echo Chose your build that you are in right now
-echo That will make you never upgrade to newer build that mean stable pc stable performace!
+echo Choose the build that you are running right now
+echo That will make you never upgrade to a newer build which means more stable PC performance
 echo 2. 22H2 (Works on Windows 11)
-echo 3. 21h2 (Works on Windows 11)
-echo 4. 21h1
-echo 5. 20h2 (2009)
-echo 6. 20h1 (2004)
-echo 7. 19h2 (1909)
-echo 8. 19h1 (1903)
+echo 3. 21H2 (Works on Windows 11)
+echo 4. 21H1
+echo 5. 20H2 (2009)
+echo 6. 20H1 (2004)
+echo 7. 19H2 (1909)
+echo 8. 19H1 (1903)
 echo 9. 1809
 echo 10. 1607
 echo 11. Undo
 echo ---------------------------------------------------------------------------------------------------------------------
-echo Chose If you want to not get non security and security updates or security updates only!
-echo Note: this wont remove the frist setting
+echo Choose If you want to get feature updates and security updates or security updates only
+echo Note: this won't remove the first setting
 echo 12. Security Updates only
-echo 13. Security and non
+echo 13. Security and feature updates
 echo ---------------------------------------------------------------------------------------------------------------------
 set choice=
-set /p choice=Type the number.
+set /p choice=Type the number. 
 if not '%choice%'=='' set choice=%choice:~0,100%
 if '%choice%'=='1' powershell -command "Invoke-WebRequest https://github.com/AveYo/MediaCreationTool.bat/raw/main/bypass11/Skip_TPM_Check_on_Dynamic_Update.cmd -OutFile C:\windows\temp\bypass11.cmd" && powershell.exe -command "C:\windows\temp\bypass11.cmd"
 if '%choice%'=='2' reg add HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate /f /v TargetReleaseVersion /t REG_DWORD /d 1 & reg add HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate /f /v TargetReleaseVersionInfo /t REG_SZ /d 22h2
@@ -883,7 +883,7 @@ cls
 echo 1. Crack Windows and Office
 echo 0. Go Back
 set choice=
-set /p choice=Type the number.
+set /p choice=Type the number. 
 if not '%choice%'=='' set choice=%choice:~0,100%
 if '%choice%'=='1' powershell -command "irm https://get.activated.win | iex"
 if '%choice%'=='0' goto start
@@ -894,7 +894,7 @@ goto start
 :IsAdmin
 reg query "HKU\S-1-5-19\Environment"
 If Not %ERRORLEVEL% EQU 0 (
- Cls & echo You must have administrator rights to continue ... 
+ Cls & echo You must have administrator privileges to continue ... 
  Pause & Exit
 )
 Cls
