@@ -622,7 +622,7 @@ sc stop DiagTrack> nul
 sc config "DiagTrack" start=disabled> nul
 
 echo Making Windows use UTC time to fix Linux dual boot
-reg add HKLM\SYSTEM\CurrentControlSet\Control\TimeZoneInformation /v RealTimeIsUniversal /t REG_DWORD /d 1
+reg add "HKLM\SYSTEM\CurrentControlSet\Control\TimeZoneInformation" /v "RealTimeIsUniversal" /t REG_DWORD /d 1 /f> nul
 
 pause
 goto optimizewindows
