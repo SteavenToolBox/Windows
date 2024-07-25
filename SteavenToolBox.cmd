@@ -33,6 +33,7 @@ echo 4. Windows Update Fix
 echo 5. Crack Windows and Office (Use it at your own risk)
 echo 6. Uninstall Apps
 echo 7. Repair Windows
+echo 8. Repair Storage
 echo 0. Go Back
 echo ---------------------------------------------------------------------------------------------------------------------
 set choice=
@@ -45,6 +46,7 @@ if '%choice%'=='4' goto updatefix
 if '%choice%'=='5' goto crack
 if '%choice%'=='6' goto uninstall
 if '%choice%'=='7' sfc /scannow && DISM /Online /Cleanup-Image /RestoreHealth && sfc /scannow && goto start
+if '%choice%'=='8' powershell -command "irm https://github.com/SteavenToolBox/Windows/raw/main/Scripts/repair-storage.ps1 | iex"
 if '%choice%'=='0' goto prestart
 echo "%choice%" is not valid, try again
 echo.
