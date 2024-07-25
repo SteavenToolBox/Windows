@@ -23,4 +23,3 @@ foreach ($logicalDisk in $logicalDisks) {
         }
     }
 }
-pause

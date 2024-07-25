@@ -46,7 +46,7 @@ if '%choice%'=='4' goto updatefix
 if '%choice%'=='5' goto crack
 if '%choice%'=='6' goto uninstall
 if '%choice%'=='7' sfc /scannow && DISM /Online /Cleanup-Image /RestoreHealth && sfc /scannow && goto start
-if '%choice%'=='8' powershell -command "irm https://github.com/SteavenToolBox/Windows/raw/main/Scripts/repair-storage.ps1 | iex"
+if '%choice%'=='8' powershell -command "irm https://github.com/SteavenToolBox/Windows/raw/main/Scripts/repair-storage.ps1 | iex" && pause
 if '%choice%'=='0' goto prestart
 echo "%choice%" is not valid, try again
 echo.
