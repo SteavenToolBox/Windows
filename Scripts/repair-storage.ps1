@@ -14,7 +14,7 @@ foreach ($logicalDisk in $logicalDisks) {
                 Write-Output "Running maintenance on drive $driveLetter"
                 
                 # Run chkdsk and defrag commands
-                chkdsk "$driveLetter`\" /f
+                chkdsk "$driveLetter" /f
                 defrag "$driveLetter`\" /L
                 defrag "$driveLetter`\" /O
             } else {
