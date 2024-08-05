@@ -10,10 +10,7 @@ function Install-Chocolatey {
    	 Write-Host "Chocolatey is not installed. Installing Chocolatey..."
     
   	  # Set execution policy and download/install Chocolatey
-  	  Set-ExecutionPolicy Bypass -Scope Process -Force
- 	   [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072
- 	   Invoke-Expression ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
-	   choco feature enable -n=allowGlobalConfirmation -y
+          Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
 	} else {
 	    # If installed, display a message
 	    Write-Host "Chocolatey is already installed. Run 'choco update' to get the latest version."
